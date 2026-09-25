@@ -957,9 +957,14 @@ p {
    Per Frontend Rules: Absolutely no min-width or range queries allowed!
    ========================================================================== */
 .section-header {
+
+}
+.section-title {
+
+}
+.section-description {
   
 }
-   
 /* 1599px Max-Width */
 @media screen and (max-width: 1599px) {
   .hero-section__glow {
