@@ -957,10 +957,10 @@ p {
    Per Frontend Rules: Absolutely no min-width or range queries allowed!
    ========================================================================== */
 .section-header {
-
+margin-bottom: 20px
 }
 .section-title {
-
+  
 }
 .section-description {
 
