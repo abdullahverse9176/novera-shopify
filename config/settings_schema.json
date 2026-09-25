@@ -14,13 +14,13 @@
         "type": "color",
         "id": "accent_color",
         "label": "Primary Accent Color",
-        "default": "#17a1fe"
+        "default": "#111111"
       },
       {
         "type": "color",
         "id": "bg_dark_color",
-        "label": "Background Dark",
-        "default": "#07152b"
+        "label": "Theme Background Color",
+        "default": "#e2e1de"
       }
     ]
   },

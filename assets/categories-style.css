@@ -1,21 +1,21 @@
 .category-section {
-  background: #06162f;
+  background: #e2e1de;
   padding: 60px 8%;
 }
 
 .category-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
   max-width: 1250px;
   margin: 0 auto;
-  gap:15px;
+  gap: 15px;
 }
 
 .category-card {
   position: relative;
   height: 480px;
   overflow: hidden;
+  border-radius: 4px;
 }
 
 .category-card img {
@@ -23,6 +23,11 @@
   height: 100%;
   display: block;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.04);
 }
 
 .category-title {
@@ -32,7 +37,7 @@
   transform: translate(-50%, -50%);
 
   background: #ffffff;
-  color: #07152c;
+  color: #111111;
 
   padding: 16px 38px;
 
@@ -42,10 +47,12 @@
   letter-spacing: 4px;
 
   white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
 .category-title:hover {
-  background: #07152c;
+  background: #111111;
   color: #ffffff;
 }
 

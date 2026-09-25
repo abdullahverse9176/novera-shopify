@@ -41,6 +41,21 @@
     <!-- Theme Stylesheet -->
     {{ 'theme.css' | asset_url | stylesheet_tag }}
 
+    {%- if settings.bg_dark_color != blank or settings.accent_color != blank -%}
+      <style>
+        :root {
+          {%- if settings.bg_dark_color != blank -%}
+            --bg-dark: {{ settings.bg_dark_color }};
+            --bg-light-alt: {{ settings.bg_dark_color }};
+          {%- endif -%}
+          {%- if settings.accent_color != blank -%}
+            --btn-color: {{ settings.accent_color }};
+            --btn-primary: {{ settings.accent_color }};
+          {%- endif -%}
+        }
+      </style>
+    {%- endif -%}
+
     <!-- Shopify Core Header Injections -->
     {{ content_for_header }}
 

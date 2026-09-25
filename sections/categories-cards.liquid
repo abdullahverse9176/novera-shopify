@@ -10,14 +10,28 @@
 
   <div class="category-grid">
     {% for block in section.blocks %}
-      <div class="category-card">
-        <img
-          src="{{ block.settings.image | image_url: width:600  }}"
-          alt="Tops"
-          width="600"
-          height="800"
+      <div class="category-card" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          <img
+            src="{{ block.settings.image | image_url: width: 600 }}"
+            alt="{{ block.settings.title | default: 'Category Showcase' | escape }}"
+            width="600"
+            height="800"
+            loading="lazy"
+          >
+        {% else %}
+          <div style="width:100%;height:100%;background:#dedcd8;display:flex;align-items:center;justify-content:center;color:#111111;font-weight:600;">
+            {{ block.settings.title | default: 'Category' | escape }}
+          </div>
+        {% endif %}
+        <a
+          href="{% if block.settings.link != blank %}{{ block.settings.link }}{% else %}javascript:void(0){% endif %}"
+          class="category-title"
+          aria-label="{{ block.settings.title | default: 'Category' | escape }}"
+          title="{{ block.settings.title | default: 'Category' | escape }}"
         >
-        <a href="{{ block.settings.link }}" class="category-title">{{ block.settings.title }}</a>
+          {{- block.settings.title | default: 'Collection' -}}
+        </a>
       </div>
     {% endfor %}
   </div>
