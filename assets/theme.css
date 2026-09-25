@@ -960,10 +960,14 @@ p {
 margin-bottom: 20px
 }
 .section-title {
-  
+  font-size: 40px;
+  line-height: normal;
+  font-weight: 700;
 }
 .section-description {
-
+font-size: 16px;
+  line-height: normal;
+  font-weight: 400;
 }
 
 /* 1599px Max-Width */
