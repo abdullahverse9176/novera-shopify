@@ -97,10 +97,20 @@
 
 {% schema %}
 {
-    "name": "inventory Slider",
-    "settings": [],
-    "blocks": [ 
-        
-    ]
+  "name": "inventory Slider",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
