@@ -1,0 +1,28 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_text": "Skip to content",
+      "close": "Close",
+      "menu": "Menu"
+    },
+    "meta": {
+      "tags": "tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "Page Not Found",
+      "subtext": "The page you were looking for does not exist.",
+      "link": "Continue shopping"
+    }
+  },
+  "sections": {
+    "header": {
+      "announcement": "Announcement",
+      "search_site": "Search the store",
+      "cart_count": "Cart"
+    },
+    "footer": {
+      "payment_methods": "Payment methods"
+    }
+  }
+}

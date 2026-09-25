@@ -1,0 +1,264 @@
+{% comment %}
+  Footer Section
+  Features: Multi-column modular layout, newsletter subscription, social links, accessible headings and links
+{% endcomment %}
+
+<footer role="contentinfo" class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <!-- Brand & Mission Column -->
+      <aside class="footer-col" aria-label="Brand Information">
+        <h3 class="footer-col__title">{{ section.settings.brand_heading | default: 'About Novera' }}</h3>
+        <p class="footer-col__text">
+          {{ section.settings.brand_text | default: 'Engineered for modern lifestyle and cutting-edge performance. Elevate your everyday standards with our precision-crafted essentials.' }}
+        </p>
+
+        {% if section.settings.show_socials %}
+          <div class="footer-socials" aria-label="Social media links">
+            {% if section.settings.social_facebook != blank %}
+              <a
+                href="{{ section.settings.social_facebook }}"
+                class="footer-socials__link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Novera on Facebook (opens in a new tab)"
+                title="Follow Novera on Facebook"
+              >
+                {% render 'icons', icon: 'facebook' %}
+              </a>
+            {% endif %}
+
+            {% if section.settings.social_instagram != blank %}
+              <a
+                href="{{ section.settings.social_instagram }}"
+                class="footer-socials__link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Novera on Instagram (opens in a new tab)"
+                title="Follow Novera on Instagram"
+              >
+                {% render 'icons', icon: 'instagram' %}
+              </a>
+            {% endif %}
+
+            {% if section.settings.social_twitter != blank %}
+              <a
+                href="{{ section.settings.social_twitter }}"
+                class="footer-socials__link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Novera on Twitter / X (opens in a new tab)"
+                title="Follow Novera on Twitter"
+              >
+                {% render 'icons', icon: 'twitter' %}
+              </a>
+            {% endif %}
+
+            {% if section.settings.social_linkedin != blank %}
+              <a
+                href="{{ section.settings.social_linkedin }}"
+                class="footer-socials__link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Connect with Novera on LinkedIn (opens in a new tab)"
+                title="Connect with Novera on LinkedIn"
+              >
+                {% render 'icons', icon: 'linkedin' %}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </aside>
+
+      <!-- Quick Links Column 1 -->
+      <div class="footer-col">
+        <h3 class="footer-col__title">{{ section.settings.menu_1_title | default: 'Quick Links' }}</h3>
+        <ul class="footer-nav__list">
+          {% if section.settings.menu_1 != blank and linklists[section.settings.menu_1].links.size > 0 %}
+            {% for link in linklists[section.settings.menu_1].links %}
+              <li>
+                <a
+                  href="{% if link.url != blank and link.url != '#' %}{{ link.url }}{% else %}javascript:void(0){% endif %}"
+                  class="footer-nav__link"
+                  aria-label="Navigate to {{ link.title | escape }}"
+                  title="Navigate to {{ link.title | escape }}"
+                >
+                  {{ link.title | escape }}
+                </a>
+              </li>
+            {% endfor %}
+          {% else %}
+            <li><a href="javascript:void(0)" class="footer-nav__link" aria-label="Explore Home" title="Explore Home">Home</a></li>
+            <li><a href="javascript:void(0)" class="footer-nav__link" aria-label="Browse Collections" title="Browse Collections">Collections</a></li>
+            <li><a href="javascript:void(0)" class="footer-nav__link" aria-label="Featured Releases" title="Featured Releases">Featured Releases</a></li>
+            <li><a href="javascript:void(0)" class="footer-nav__link" aria-label="Our Story" title="Our Story">Our Story</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Quick Links Column 2 -->
+      <div class="footer-col">
+        <h3 class="footer-col__title">{{ section.settings.menu_2_title | default: 'Customer Care' }}</h3>
+        <ul class="footer-nav__list">
+          {% if section.settings.menu_2 != blank and linklists[section.settings.menu_2].links.size > 0 %}
+            {% for link in linklists[section.settings.menu_2].links %}
+              <li>
+                <a
+                  href="{% if link.url != blank and link.url != '#' %}{{ link.url }}{% else %}javascript:void(0){% endif %}"
+                  class="footer-nav__link"
+                  aria-label="Navigate to {{ link.title | escape }}"
+                  title="Navigate to {{ link.title | escape }}"
+                >
+                  {{ link.title | escape }}
+                </a>
+              </li>
+            {% endfor %}
+          {% else %}
+            <li><a href="javascript:void(0)" class="footer-nav__link" aria-label="Track Your Order" title="Track Your Order">Track Order</a></li>
+            <li><a href="javascript:void(0)" class="footer-nav__link" aria-label="Shipping & Delivery Policy" title="Shipping & Delivery Policy">Shipping & Delivery</a></li>
+            <li><a href="javascript:void(0)" class="footer-nav__link" aria-label="Returns and Exchanges" title="Returns and Exchanges">Returns & Exchanges</a></li>
+            <li><a href="javascript:void(0)" class="footer-nav__link" aria-label="Frequently Asked Questions" title="Frequently Asked Questions">FAQs & Support</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Newsletter Column -->
+      <div class="footer-col footer-col--newsletter">
+        <h3 class="footer-col__title">{{ section.settings.newsletter_heading | default: 'Join The VIP Circle' }}</h3>
+        <p class="footer-col__text">
+          {{ section.settings.newsletter_subtext | default: 'Subscribe to receive exclusive drops, private member discounts, and architectural design insights.' }}
+        </p>
+
+        {% form 'customer', class: 'footer-newsletter__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <label for="FooterNewsletterEmail" class="visually-hidden">Email Address</label>
+          <div class="footer-newsletter__input-group">
+            <input
+              type="email"
+              id="FooterNewsletterEmail"
+              name="contact[email]"
+              class="footer-newsletter__input"
+              value=""
+              placeholder="Enter your email address"
+              aria-label="Email address for newsletter subscription"
+              required
+              autocomplete="email"
+            >
+            <button
+              type="submit"
+              class="btn-primary-pill footer-newsletter__submit"
+              aria-label="Subscribe to newsletter"
+              title="Subscribe to newsletter"
+            >
+              Subscribe
+            </button>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="site-footer__bottom">
+      <p class="site-footer__copyright">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name | default: 'Novera' }}. All rights reserved. Precision Craftsmanship.
+      </p>
+      <div class="site-footer__badges">
+        <span>SSL Encrypted Checkout</span>
+        <span>&bull;</span>
+        <span>Fast Global Delivery</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Column"
+    },
+    {
+      "type": "text",
+      "id": "brand_heading",
+      "label": "Brand Heading",
+      "default": "About Novera"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_text",
+      "label": "Brand Description",
+      "default": "Engineered for modern lifestyle and cutting-edge performance. Elevate your everyday standards with our precision-crafted essentials."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_socials",
+      "label": "Show Social Media Links",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_twitter",
+      "label": "Twitter / X URL"
+    },
+    {
+      "type": "url",
+      "id": "social_linkedin",
+      "label": "LinkedIn URL"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Menus"
+    },
+    {
+      "type": "text",
+      "id": "menu_1_title",
+      "label": "Menu 1 Title",
+      "default": "Quick Links"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Menu 1 Linklist"
+    },
+    {
+      "type": "text",
+      "id": "menu_2_title",
+      "label": "Menu 2 Title",
+      "default": "Customer Care"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Menu 2 Linklist"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter Heading",
+      "default": "Join The VIP Circle"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_subtext",
+      "label": "Newsletter Subtext",
+      "default": "Subscribe to receive exclusive drops, private member discounts, and architectural design insights."
+    }
+  ]
+}
+{% endschema %}

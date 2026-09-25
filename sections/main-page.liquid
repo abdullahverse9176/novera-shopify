@@ -1,0 +1,21 @@
+{% comment %}
+  Main Page Section
+{% endcomment %}
+
+<section class="page-section" style="padding: 60px 0;">
+  <div class="container">
+    <header class="section-header">
+      <h2 class="section-header__title">{{ page.title | escape }}</h2>
+    </header>
+    <div class="page-content" style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Content",
+  "settings": []
+}
+{% endschema %}

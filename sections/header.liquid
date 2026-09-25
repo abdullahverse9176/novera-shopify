@@ -1,0 +1,182 @@
+{% comment %}
+  Header Section
+  Features: Sticky navigation, announcement bar, logo, accessible links, mobile drawer
+{% endcomment %}
+
+{% if section.settings.show_announcement %}
+  <aside class="announcement-bar" role="region" aria-label="Announcement">
+    <div class="container">
+      <span>{{ section.settings.announcement_text | default: 'Free worldwide express shipping on all orders over $75!' }}</span>
+      {% if section.settings.announcement_link != blank %}
+        <a
+          href="{{ section.settings.announcement_link }}"
+          class="announcement-bar__link"
+          aria-label="{{ section.settings.announcement_link_text | default: 'Learn More' }}"
+          title="{{ section.settings.announcement_link_text | default: 'Learn More' }}"
+        >
+          {{ section.settings.announcement_link_text | default: 'Learn More' }}
+        </a>
+      {% endif %}
+    </div>
+  </aside>
+{% endif %}
+
+<header role="banner" class="site-header">
+  <div class="container">
+    <div class="site-header__inner">
+      <!-- Store Brand / Logo -->
+      <div class="site-header__logo">
+        <a
+          href="/"
+          class="site-header__logo-link"
+          aria-label="{{ shop.name | escape }} Homepage"
+          title="{{ shop.name | escape }} Homepage"
+        >
+          <span class="site-header__logo-badge" aria-hidden="true"></span>
+          {% if section.settings.logo != blank %}
+            <img
+              src="{{ section.settings.logo | image_url: width: 300 }}"
+              alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+              class="site-header__logo-img"
+              width="{{ section.settings.logo_width | default: 140 }}"
+              height="auto"
+              loading="eager"
+            >
+          {% else %}
+            <span>{{ shop.name | default: 'NOVERA' }}</span>
+          {% endif %}
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav role="navigation" class="site-nav" aria-label="Main Navigation">
+        {% render 'navigation-menu',
+          menu: linklists[section.settings.menu],
+          nav_class: 'site-nav__list',
+          link_class: 'site-nav__link'
+        %}
+      </nav>
+
+      <!-- Action Items & Mobile Menu Trigger -->
+      <div class="site-header__actions">
+        <a
+          href="{% if routes.search_url %}{{ routes.search_url }}{% else %}javascript:void(0){% endif %}"
+          class="site-header__action-btn"
+          aria-label="Search the store"
+          title="Search the store"
+        >
+          {% render 'icons', icon: 'search' %}
+        </a>
+
+        <a
+          href="{% if routes.cart_url %}{{ routes.cart_url }}{% else %}javascript:void(0){% endif %}"
+          class="site-header__action-btn"
+          aria-label="View shopping cart with {{ cart.item_count | default: 0 }} items"
+          title="View shopping cart with {{ cart.item_count | default: 0 }} items"
+        >
+          {% render 'icons', icon: 'cart' %}
+          <span class="site-header__badge" aria-hidden="true">{{ cart.item_count | default: 0 }}</span>
+        </a>
+
+        <button
+          type="button"
+          class="site-header__hamburger"
+          data-mobile-menu-trigger
+          aria-label="Open navigation menu"
+          title="Open navigation menu"
+          aria-expanded="false"
+        >
+          {% render 'icons', icon: 'menu' %}
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Accessible Mobile Navigation Drawer -->
+<div class="mobile-nav-drawer" data-mobile-drawer aria-hidden="true">
+  <div class="mobile-nav-drawer__overlay" data-mobile-drawer-overlay></div>
+  <nav class="mobile-nav-drawer__content" aria-label="Mobile Navigation">
+    <div class="mobile-nav-drawer__header">
+      <span class="site-header__logo-link">
+        <span class="site-header__logo-badge" aria-hidden="true"></span>
+        {{ shop.name | default: 'NOVERA' }}
+      </span>
+      <button
+        type="button"
+        class="mobile-nav-drawer__close"
+        data-mobile-drawer-close
+        aria-label="Close navigation menu"
+        title="Close navigation menu"
+      >
+        {% render 'icons', icon: 'close' %}
+      </button>
+    </div>
+
+    {% render 'navigation-menu',
+      menu: linklists[section.settings.menu],
+      nav_class: 'mobile-nav-drawer__list',
+      link_class: 'mobile-nav-drawer__link'
+    %}
+  </nav>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free worldwide express shipping on all orders over $75!"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link"
+    },
+    {
+      "type": "text",
+      "id": "announcement_link_text",
+      "label": "Announcement link text",
+      "default": "Learn More"
+    },
+    {
+      "type": "header",
+      "content": "Branding & Navigation"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Store Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 260,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 140
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

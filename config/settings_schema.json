@@ -1,0 +1,57 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Novera Luxury Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Antigravity",
+    "theme_documentation_url": "https://github.com",
+    "theme_support_url": "https://github.com"
+  },
+  {
+    "name": "Colors & Style",
+    "settings": [
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Primary Accent Color",
+        "default": "#17a1fe"
+      },
+      {
+        "type": "color",
+        "id": "bg_dark_color",
+        "label": "Background Dark",
+        "default": "#07152b"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter_link",
+        "label": "Twitter"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      }
+    ]
+  }
+]

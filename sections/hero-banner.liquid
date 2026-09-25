@@ -1,0 +1,202 @@
+{% comment %}
+  Hero Banner Section
+  Strictly adheres to:
+  - Single H1 Rule (vizz-file.md)
+  - Primary & Secondary Pill Button standards
+  - Anchor tag accessibility (aria-label, title)
+{% endcomment %}
+
+<section class="hero-section" aria-label="Hero Banner">
+  <div class="hero-section__glow" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="hero-section__grid">
+      <!-- Left Column: Headline & Action -->
+      <div class="hero-section__content">
+        {% if section.settings.badge_text != blank %}
+          <div class="hero-section__badge">
+            <span aria-hidden="true">&bull;</span>
+            <span>{{ section.settings.badge_text | escape }}</span>
+          </div>
+        {% endif %}
+
+        <!-- STRICT SINGLE H1 RULE -->
+        <h1 class="hero-section__headline">
+          {{ section.settings.heading_prefix | default: 'Redefining Modern' }}
+          <span class="hero-section__headline-highlight">
+            {{ section.settings.heading_highlight | default: 'Aesthetics & Performance' }}
+          </span>
+        </h1>
+
+        <p class="hero-section__lead">
+          {{ section.settings.subheading | default: 'Discover ultra-refined essentials crafted with precision engineering and timeless luxury minimalism. Tailored for discerning modern collectors.' }}
+        </p>
+
+        <div class="hero-section__cta-group">
+          <a
+            href="{% if section.settings.primary_button_link != blank %}{{ section.settings.primary_button_link }}{% else %}javascript:void(0){% endif %}"
+            class="btn-primary-pill"
+            aria-label="{{ section.settings.primary_button_label | default: 'Explore Collection' }}"
+            title="{{ section.settings.primary_button_label | default: 'Explore Collection' }}"
+          >
+            <span>{{ section.settings.primary_button_label | default: 'Explore Collection' }}</span>
+            {% render 'icons', icon: 'arrow-right' %}
+          </a>
+
+          {% if section.settings.show_secondary_button %}
+            <a
+              href="{% if section.settings.secondary_button_link != blank %}{{ section.settings.secondary_button_link }}{% else %}javascript:void(0){% endif %}"
+              class="btn-secondary-pill"
+              aria-label="{{ section.settings.secondary_button_label | default: 'View Lookbook' }}"
+              title="{{ section.settings.secondary_button_label | default: 'View Lookbook' }}"
+            >
+              <span>{{ section.settings.secondary_button_label | default: 'View Lookbook' }}</span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Right Column: Featured Showcase Card -->
+      <div class="hero-section__visual">
+        <aside class="hero-showcase-card" aria-label="Hero Spotlight Item">
+          <span class="hero-showcase-card__badge">
+            {{ section.settings.card_badge | default: 'Flagship Edition' }}
+          </span>
+
+          <figure class="hero-showcase-card__figure">
+            {% if section.settings.hero_image != blank %}
+              <img
+                src="{{ section.settings.hero_image | image_url: width: 800 }}"
+                alt="{{ section.settings.hero_image.alt | default: 'Novera Flagship Luxury Showcase' | escape }}"
+                class="hero-showcase-card__img"
+                width="800"
+                height="560"
+                loading="eager"
+              >
+            {% else %}
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 560' width='800' height='560'%3E%3Cdefs%3E%3ClinearGradient id='hero-grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230e2246'/%3E%3Cstop offset='100%25' stop-color='%23132a54'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23hero-grad)'/%3E%3Ccircle cx='400' cy='280' r='140' fill='none' stroke='%2300b4d8' stroke-width='4' stroke-dasharray='10 15' opacity='0.7'/%3E%3Ccircle cx='400' cy='280' r='100' fill='%2317a1fe' opacity='0.2'/%3E%3Ctext x='50%25' y='48%25' fill='%23ffffff' font-family='Poppins, sans-serif' font-size='26' font-weight='700' dominant-baseline='middle' text-anchor='middle'%3ENOVERA TITANIUM CHRONO%3C/text%3E%3Ctext x='50%25' y='57%25' fill='%2300b4d8' font-family='Poppins, sans-serif' font-size='16' font-weight='500' dominant-baseline='middle' text-anchor='middle'%3ELimited Edition 2026%3C/text%3E%3C/svg%3E"
+                alt="Novera Titanium Chrono flagship showcase placeholder graphic"
+                class="hero-showcase-card__img"
+                width="800"
+                height="560"
+                loading="eager"
+              >
+            {% endif %}
+          </figure>
+
+          <div class="hero-showcase-card__meta">
+            <div>
+              <span class="hero-showcase-card__title">
+                {{ section.settings.card_title | default: 'Chronograph Model X' }}
+              </span>
+            </div>
+            <span class="hero-showcase-card__price">
+              {{ section.settings.card_price | default: '$389.00' }}
+            </span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "New Season Arrival 2026"
+    },
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Heading (Prefix)",
+      "default": "Redefining Modern"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Heading (Highlighted)",
+      "default": "Aesthetics & Performance"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading Description",
+      "default": "Discover ultra-refined essentials crafted with precision engineering and timeless luxury minimalism. Tailored for discerning modern collectors."
+    },
+    {
+      "type": "header",
+      "content": "Primary Call To Action"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Button Label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Call To Action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_button",
+      "label": "Show Secondary Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Button Label",
+      "default": "View Lookbook"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Hero Showcase Card"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Showcase Image"
+    },
+    {
+      "type": "text",
+      "id": "card_badge",
+      "label": "Card Badge",
+      "default": "Flagship Edition"
+    },
+    {
+      "type": "text",
+      "id": "card_title",
+      "label": "Card Title",
+      "default": "Chronograph Model X"
+    },
+    {
+      "type": "text",
+      "id": "card_price",
+      "label": "Card Price",
+      "default": "$389.00"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

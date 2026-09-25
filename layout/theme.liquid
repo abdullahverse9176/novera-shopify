@@ -1,0 +1,73 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+
+    {%- if canonical_url != blank -%}
+      <link rel="canonical" href="{{ canonical_url }}">
+    {%- endif -%}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <!-- SEO Title & Description -->
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:site_name" content="{{ shop.name }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:title" content="{{ page_title | default: shop.name }}">
+    <meta property="og:type" content="website">
+    {% if page_description %}
+      <meta property="og:description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <!-- Google Fonts Poppins Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Theme Stylesheet -->
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <!-- Shopify Core Header Injections -->
+    {{ content_for_header }}
+
+    <!-- Theme Defer Script -->
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  </head>
+
+  <body>
+    <!-- Accessibility Skip Link -->
+    <a
+      class="skip-to-content"
+      href="#main-content"
+      aria-label="Skip to main content"
+      title="Skip to main content"
+    >
+      Skip to content
+    </a>
+
+    <!-- Header Section -->
+    {% section 'header' %}
+
+    <!-- Main Content Area with Semantic Role -->
+    <main id="main-content" role="main" class="main-content" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    <!-- Footer Section -->
+    {% section 'footer' %}
+  </body>
+</html>

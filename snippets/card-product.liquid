@@ -1,0 +1,76 @@
+{% comment %}
+  Reusable Product Card Snippet
+  Usage: {% render 'card-product', product: product, badge: 'Featured' %}
+{% endcomment %}
+
+<article class="product-card">
+  <figure class="product-card__figure">
+    {% if badge != blank %}
+      <span class="product-card__tag">{{ badge }}</span>
+    {% elsif product.compare_at_price > product.price %}
+      <span class="product-card__tag">Sale</span>
+    {% endif %}
+
+    {% if product.featured_image != blank %}
+      <img
+        class="product-card__img"
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        width="600"
+        height="600"
+        loading="lazy"
+      >
+    {% else %}
+      <img
+        class="product-card__img"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600' width='600' height='600'%3E%3Crect width='100%25' height='100%25' fill='%230e2246'/%3E%3Ctext x='50%25' y='50%25' fill='%2300b4d8' font-family='Poppins, sans-serif' font-size='24' font-weight='600' dominant-baseline='middle' text-anchor='middle'%3ENovera Premium Product%3C/text%3E%3C/svg%3E"
+        alt="Novera Premium Product Showcase placeholder preview"
+        width="600"
+        height="600"
+        loading="lazy"
+      >
+    {% endif %}
+  </figure>
+
+  <div class="product-card__info">
+    <h3 class="product-card__title">
+      <a
+        href="{% if product.url != blank %}{{ product.url }}{% else %}javascript:void(0){% endif %}"
+        aria-label="View details for {{ product.title | default: 'Premium Product' | escape }}"
+        title="View details for {{ product.title | default: 'Premium Product' | escape }}"
+      >
+        {{ product.title | default: 'Novera Precision Smart Device' }}
+      </a>
+    </h3>
+
+    <div class="product-card__price-row">
+      <span class="product-card__price">
+        {% if product.price %}
+          {{ product.price | money }}
+        {% else %}
+          $129.00
+        {% endif %}
+      </span>
+      {% if product.compare_at_price > product.price or product == blank %}
+        <span class="product-card__compare-price">
+          {% if product.compare_at_price %}
+            {{ product.compare_at_price | money }}
+          {% else %}
+            $159.00
+          {% endif %}
+        </span>
+      {% endif %}
+    </div>
+
+    <div class="product-card__cta">
+      <a
+        href="{% if product.url != blank %}{{ product.url }}{% else %}javascript:void(0){% endif %}"
+        class="btn-primary-pill"
+        aria-label="Shop now for {{ product.title | default: 'Premium Product' | escape }}"
+        title="Shop now for {{ product.title | default: 'Premium Product' | escape }}"
+      >
+        Shop Now
+      </a>
+    </div>
+  </div>
+</article>

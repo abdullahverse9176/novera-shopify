@@ -1,0 +1,72 @@
+{% comment %}
+  Reusable Navigation Menu Snippet
+  Usage: {% render 'navigation-menu', menu: linklists[section.settings.menu], nav_class: 'site-nav__list', link_class: 'site-nav__link' %}
+{% endcomment %}
+
+<ul class="{{ nav_class | default: 'site-nav__list' }}">
+  {% if menu != blank and menu.links.size > 0 %}
+    {% for link in menu.links %}
+      <li class="site-nav__item">
+        <a
+          href="{% if link.url != blank and link.url != '#' %}{{ link.url }}{% else %}javascript:void(0){% endif %}"
+          class="{{ link_class | default: 'site-nav__link' }}{% if link.active %} is-active{% endif %}"
+          aria-label="Navigate to {{ link.title | escape }}"
+          title="Navigate to {{ link.title | escape }}"
+        >
+          {{ link.title | escape }}
+        </a>
+      </li>
+    {% endfor %}
+  {% else %}
+    <li class="site-nav__item">
+      <a
+        href="javascript:void(0)"
+        class="{{ link_class | default: 'site-nav__link' }} is-active"
+        aria-label="Navigate to Home page"
+        title="Navigate to Home page"
+      >
+        Home
+      </a>
+    </li>
+    <li class="site-nav__item">
+      <a
+        href="javascript:void(0)"
+        class="{{ link_class | default: 'site-nav__link' }}"
+        aria-label="Navigate to Catalog page"
+        title="Navigate to Catalog page"
+      >
+        Catalog
+      </a>
+    </li>
+    <li class="site-nav__item">
+      <a
+        href="javascript:void(0)"
+        class="{{ link_class | default: 'site-nav__link' }}"
+        aria-label="Navigate to Features page"
+        title="Navigate to Features page"
+      >
+        Features
+      </a>
+    </li>
+    <li class="site-nav__item">
+      <a
+        href="javascript:void(0)"
+        class="{{ link_class | default: 'site-nav__link' }}"
+        aria-label="Navigate to About Us page"
+        title="Navigate to About Us page"
+      >
+        About Us
+      </a>
+    </li>
+    <li class="site-nav__item">
+      <a
+        href="javascript:void(0)"
+        class="{{ link_class | default: 'site-nav__link' }}"
+        aria-label="Navigate to Contact page"
+        title="Navigate to Contact page"
+      >
+        Contact
+      </a>
+    </li>
+  {% endif %}
+</ul>
