@@ -1,6 +1,5 @@
 <section class="category-section">
   <div class="category-grid">
-
     <div class="category-card">
       <img
         src="https://via.placeholder.com/600x800"
@@ -40,8 +39,36 @@
       >
       <a href="#" class="category-title">SWEATSHIRTS</a>
     </div>
-
   </div>
 </section>
 
-
+{% schema %}
+{
+  "name": "Category Cards",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "TOPS"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
