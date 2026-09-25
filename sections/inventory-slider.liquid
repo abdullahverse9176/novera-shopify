@@ -1,14 +1,10 @@
 {{ 'inventory-slider.css' | asset_url | stylesheet_tag }}
 
 <section class="product-section">
-
   <div class="product-grid">
-
     <!-- Product 1 -->
     <div class="product-card">
-
       <div class="product-image-wrapper">
-
         <img
           src="https://via.placeholder.com/600x750"
           alt="SPANX AirEssentials Draped Tee"
@@ -17,45 +13,28 @@
           class="product-image"
         >
 
-        <button class="quick-add" type="button" aria-label="Quick add">
-          +
-        </button>
-
+        <button class="quick-add" type="button" aria-label="Quick add">+</button>
       </div>
 
       <div class="product-info">
-
         <div class="color-swatches">
           <span class="color-swatch brown"></span>
           <span class="color-swatch black"></span>
         </div>
 
-        <div class="product-brand">
-          SPANX AirEssentials<sup>®</sup>
-        </div>
+        <div class="product-brand">SPANX AirEssentials<sup>®</sup></div>
 
-        <h3 class="product-title">
-          Draped Tee
-        </h3>
+        <h3 class="product-title">Draped Tee</h3>
 
-        <div class="product-price">
-          $98.00 USD
-        </div>
+        <div class="product-price">$98.00 USD</div>
 
-        <span class="product-badge">
-          New
-        </span>
-
+        <span class="product-badge"> New </span>
       </div>
-
     </div>
-
 
     <!-- Product 2 -->
     <div class="product-card">
-
       <div class="product-image-wrapper">
-
         <img
           src="https://via.placeholder.com/600x750"
           alt="SPANX AirEssentials Draped Tie-Waist Maxi Dress"
@@ -64,46 +43,29 @@
           class="product-image"
         >
 
-        <button class="quick-add" type="button" aria-label="Quick add">
-          +
-        </button>
-
+        <button class="quick-add" type="button" aria-label="Quick add">+</button>
       </div>
 
       <div class="product-info">
-
         <div class="color-swatches">
           <span class="color-swatch black"></span>
           <span class="color-swatch beige"></span>
           <span class="color-swatch burgundy"></span>
         </div>
 
-        <div class="product-brand">
-          SPANX AirEssentials<sup>®</sup>
-        </div>
+        <div class="product-brand">SPANX AirEssentials<sup>®</sup></div>
 
-        <h3 class="product-title">
-          Draped Tie-Waist Maxi Dress
-        </h3>
+        <h3 class="product-title">Draped Tie-Waist Maxi Dress</h3>
 
-        <div class="product-price">
-          $138.00 USD
-        </div>
+        <div class="product-price">$138.00 USD</div>
 
-        <span class="product-badge">
-          New
-        </span>
-
+        <span class="product-badge"> New </span>
       </div>
-
     </div>
-
 
     <!-- Product 3 -->
     <div class="product-card">
-
       <div class="product-image-wrapper">
-
         <img
           src="https://via.placeholder.com/600x750"
           alt="SPANX AirEssentials Draped Midi Skirt"
@@ -112,55 +74,43 @@
           class="product-image"
         >
 
-        <button class="quick-add" type="button" aria-label="Quick add">
-          +
-        </button>
-
+        <button class="quick-add" type="button" aria-label="Quick add">+</button>
       </div>
 
       <div class="product-info">
-
         <div class="color-swatches">
           <span class="color-swatch brown"></span>
           <span class="color-swatch black"></span>
         </div>
 
-        <div class="product-brand">
-          SPANX AirEssentials<sup>®</sup>
-        </div>
+        <div class="product-brand">SPANX AirEssentials<sup>®</sup></div>
 
-        <h3 class="product-title">
-          Draped Midi Skirt
-        </h3>
+        <h3 class="product-title">Draped Midi Skirt</h3>
 
-        <div class="product-price">
-          $128.00 USD
-        </div>
+        <div class="product-price">$128.00 USD</div>
 
-        <span class="product-badge">
-          New
-        </span>
-
+        <span class="product-badge"> New </span>
       </div>
-
     </div>
-
   </div>
-
 </section>
 
-
 {% schema %}
-
 {
     "name": "inventory Slider",
     "settings": [],
     "blocks": [
         {
             "type": "category",
-      "name": "Category",
+            "name": "Category",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Product Image"
+                }
+            ]
         }
     ]
 }
-
 {% endschema %}
