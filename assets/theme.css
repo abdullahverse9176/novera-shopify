@@ -956,7 +956,10 @@ p {
    STRICT MAX-WIDTH MEDIA QUERIES (Cascading Downwards Only)
    Per Frontend Rules: Absolutely no min-width or range queries allowed!
    ========================================================================== */
-
+.section-header {
+  
+}
+   
 /* 1599px Max-Width */
 @media screen and (max-width: 1599px) {
   .hero-section__glow {
