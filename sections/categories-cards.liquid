@@ -28,7 +28,21 @@
 {% schema %}
 {
   "name": "Category Cards",
-  "settings": [],
+  "settings": [
+    {
+        "type": "text",
+        "id": "section-title",
+        "label": "Category Title",
+        "default":"Categories"
+    },
+    {
+        "type": "text",
+        "id": "section-description",
+        "label": "Category Description",
+        "default":"Category Description"
+    }
+
+  ],
   "blocks": [
     {
       "type": "category",
