@@ -1,27 +1,25 @@
-
 {{ 'categories-style.css' | asset_url | stylesheet_tag }}
 
 <section class="category-section">
-
+  {% if section.settings.section_title != blank %}
     <div class="section-header">
-        <h2 class="section-title">{{ section.settings.section_title }}</h2>
-        <p class="section-description">{{ section.settings.section_description }}</p>
+      <h2 class="section-title">{{ section.settings.section_title }}</h2>
+      <p class="section-description">{{ section.settings.section_description }}</p>
     </div>
+  {% endif %}
 
   <div class="category-grid">
-
     {% for block in section.blocks %}
-    <div class="category-card">
-      <img
-        src="{{ block.settings.image | image_url: width:600  }}"
-        alt="Tops"
-        width="600"
-        height="800"
-      >
-      <a href="{{ block.settings.link }}" class="category-title">{{ block.settings.title }}</a>
-    </div>
+      <div class="category-card">
+        <img
+          src="{{ block.settings.image | image_url: width:600  }}"
+          alt="Tops"
+          width="600"
+          height="800"
+        >
+        <a href="{{ block.settings.link }}" class="category-title">{{ block.settings.title }}</a>
+      </div>
     {% endfor %}
-
   </div>
 </section>
 
@@ -30,18 +28,17 @@
   "name": "Category Cards",
   "settings": [
     {
-        "type": "text",
-        "id": "section_title",
-        "label": "Category Title",
-        "default":"Categories"
+      "type": "text",
+      "id": "section_title",
+      "label": "Category Title",
+      "default": "Categories"
     },
     {
-        "type": "text",
-        "id": "section_description",
-        "label": "Category Description",
-        "default":"Category Description"
+      "type": "text",
+      "id": "section_description",
+      "label": "Category Description",
+      "default": "Category Description"
     }
-
   ],
   "blocks": [
     {
