@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_banner": {
@@ -23,12 +32,59 @@
         "badge": "Curated Selection",
         "title": "Featured Innovations",
         "description": "Explore our handpicked curation of precision gear, crafted for those who demand excellence in every detail.",
+        "collection": "",
         "products_to_show": 4
       }
+    },
+    "categories_cards_b4LV7d": {
+      "type": "categories-cards",
+      "blocks": {
+        "category_fKhF6H": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/set2-out-1.webp",
+            "title": "TOPS",
+            "link": ""
+          }
+        },
+        "category_nNPkG7": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/set2-out-1.webp",
+            "title": "TOPS",
+            "link": ""
+          }
+        },
+        "category_BDwcV6": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/set2-out-1.webp",
+            "title": "TOPS",
+            "link": ""
+          }
+        },
+        "category_QB3Lgd": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/set2-out-1.webp",
+            "title": "TOPS",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_fKhF6H",
+        "category_nNPkG7",
+        "category_BDwcV6",
+        "category_QB3Lgd"
+      ],
+      "name": "Category Cards",
+      "settings": {}
     }
   },
   "order": [
     "hero_banner",
-    "featured_collection"
+    "featured_collection",
+    "categories_cards_b4LV7d"
   ]
 }
