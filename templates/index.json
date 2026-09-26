@@ -79,12 +79,23 @@
         "category_QB3Lgd"
       ],
       "name": "Category Cards",
-      "settings": {}
+      "settings": {
+        "section_title": "Categories",
+        "section_description": "Category Description"
+      }
+    },
+    "video_banner_fHFkbc": {
+      "type": "video-banner",
+      "name": "Video Section",
+      "settings": {
+        "video_url": ""
+      }
     }
   },
   "order": [
     "hero_banner",
     "featured_collection",
-    "categories_cards_b4LV7d"
+    "categories_cards_b4LV7d",
+    "video_banner_fHFkbc"
   ]
 }
