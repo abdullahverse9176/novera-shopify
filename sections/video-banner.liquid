@@ -14,7 +14,9 @@
   }
 </style>
 <section class="video-section">
+  {% if section.settings.banner_video != blank %}
     {{ section.settings.banner_video | video_tag }}
+  {% endif %}
 </section>
 
 {% schema %}
