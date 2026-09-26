@@ -13,7 +13,9 @@
       object-fit:cover;
   }
 </style>
-<section class="video-section"></section>
+<section class="video-section">
+    {{ section.settings.banner_video | video_tag }}
+</section>
 
 {% schema %}
 {
