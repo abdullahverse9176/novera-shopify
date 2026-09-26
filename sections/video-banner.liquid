@@ -1,0 +1,13 @@
+
+<section class="video-section">
+
+  {% if section.settings.video != blank %}
+    {{ section.settings.video | video_tag:
+      autoplay: true,
+      loop: true,
+      muted: true,
+      controls: false
+    }}
+  {% endif %}
+
+</section>
