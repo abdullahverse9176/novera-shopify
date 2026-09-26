@@ -17,7 +17,7 @@
   {% if section.settings.banner_video != blank %}
     {{ section.settings.banner_video | video_tag }}
     {% else %}
-        {{ section.settings.video_url | video_url }}
+        {{ section.settings.video_url | video_tag }}
   {% endif %}
 </section>
 
