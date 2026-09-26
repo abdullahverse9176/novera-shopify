@@ -17,7 +17,7 @@
   {% if section.settings.banner_video != blank %}
     {{ section.settings.banner_video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
   {% else %}
-    {{ section.settings.video_url | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+    {{ section.settings.url | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
   {% endif %}
 </section>
 
@@ -31,10 +31,9 @@
       "label": "Banner Video"
     },
     {
-      "type": "video_url",
+      "type": "url",
       "id": "video_url",
       "label": "Video URL",
-      "accept": ["youtube", "vimeo"]
     }
   ],
   "presets": [
