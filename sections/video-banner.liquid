@@ -13,28 +13,23 @@
       object-fit:cover;
   }
 </style>
-<section class="video-section">
-
-</section>
+<section class="video-section"></section>
 
 {% schema %}
+{
+  "name": "Video Section",
+  "settings": [
     {
-        "name": "Video Section",
-        "settings": [
-            {
-                "type": "video",
-                "id": "banner_video",
-                "label": "Banner Video"
-            },
-            {
-                "type": "video_url",
-                "id": "video_url",
-                "label": "Video URL",
-                "accept": [
-                    "youtube", "vimeo"
-                ]
-            },
-
-        ]
+      "type": "video",
+      "id": "banner_video",
+      "label": "Banner Video"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL",
+      "accept": ["youtube", "vimeo"]
     }
+  ]
+}
 {% endschema %}
