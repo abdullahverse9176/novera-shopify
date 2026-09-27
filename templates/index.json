@@ -38,33 +38,29 @@
         "category_fKhF6H": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/set2-out-1.webp",
-            "title": "TOPS",
-            "link": ""
+            "category_card_btn": "Button",
+            "category_card_url": ""
           }
         },
         "category_nNPkG7": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/set2-out-1.webp",
-            "title": "TOPS",
-            "link": ""
+            "category_card_btn": "",
+            "category_card_url": ""
           }
         },
         "category_BDwcV6": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/set2-out-1.webp",
-            "title": "TOPS",
-            "link": ""
+            "category_card_btn": "",
+            "category_card_url": ""
           }
         },
         "category_QB3Lgd": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/set2-out-1.webp",
-            "title": "TOPS",
-            "link": ""
+            "category_card_btn": "",
+            "category_card_url": ""
           }
         }
       },
@@ -75,10 +71,7 @@
         "category_QB3Lgd"
       ],
       "name": "Category Cards",
-      "settings": {
-        "section_title": "Categories",
-        "section_description": "Category Description"
-      }
+      "settings": {}
     },
     "video_banner_fHFkbc": {
       "type": "video-banner",
