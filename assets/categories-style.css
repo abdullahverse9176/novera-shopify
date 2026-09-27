@@ -9,12 +9,12 @@
   gap: 15px;
 }
 
-.category-card {
+.category-card .card-img {
   position: relative;
   padding-top: 40%;
 }
 
-.category-card img {
+.category-card card-img img {
   position: absolute;
   top: 0;
   left: 0;
