@@ -11,6 +11,7 @@
 .category-card {
   background: #fff;
   border-radius: 5px;
+  padding: 20px;
 }
 .category-card .card-img {
   position: relative;
