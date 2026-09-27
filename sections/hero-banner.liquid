@@ -23,7 +23,7 @@
     </h1>
 
     <p class="hero-description">
-      Explore timeless styles made for everyday living.
+      {{ section.settings.hero_description }}
     </p>
 
     <div class="hero-buttons">
@@ -57,6 +57,12 @@
       "id": "header_title",
       "label": "Hero Title",
       "default": "Discover Our Latest Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Hero Description",
+      "default": "Explore timeless styles made for everyday living."
     }
   ],
   "presets": []
