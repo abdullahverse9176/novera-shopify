@@ -1,5 +1,4 @@
-
-{{ 'costomizable-banner.css' | asset_url | stylesheet_tag }}
+{{ 'customizable-banner.css' | asset_url | stylesheet_tag }}
 
 <section class="custom-banner">
   <div class="custom-banner-content">
@@ -12,15 +11,34 @@
 </section>
 
 {% schema %}
-
 {
-"name": "Customizable Banner",
-"settings": [],
-"presets": [
-  {
-  "name": "Customizable Banner"
-  }
-]
+  "name": "Customizable Banner",
+  "settings": [
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customizable Banner"
+    }
+  ]
 }
-
 {% endschema %}
