@@ -14,7 +14,7 @@
   padding-top: 40%;
 }
 
-.category-card card-img img {
+.category-card .card-img img {
   position: absolute;
   top: 0;
   left: 0;
