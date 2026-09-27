@@ -1,3 +1,9 @@
+$(document).ready(function() {
+
+  console.log('jQuery chal rahi hai');
+
+});
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const drawer = document.querySelector("#cart-drawer");
