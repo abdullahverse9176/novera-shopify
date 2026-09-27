@@ -23,12 +23,16 @@
             >
           </div>
         {% endif %}
+
+        {% if block.settings.category_card_btn != blank %}
         <div class="btn-wrapper">
           <a href="{{block.settings.category_card_url}}" class="category-button">
             {{ block.settings.category_card_btn }}
           </a>
         </div>
+      {% endif %}
       </div>
+
     {% endfor %}
   </div>
 </section>
