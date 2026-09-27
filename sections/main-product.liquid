@@ -1,29 +1,14 @@
-
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
 
 <section class="main-product">
-
   <div class="main-product__container">
-
     <div class="main-product__image">
-
       {% if product.featured_image != blank %}
-
-        {{
-          product.featured_image
-          | image_url: width: 1000
-          | image_tag:
-            loading: 'eager',
-            alt: product.title
-        }}
-
+        {{ product.featured_image | image_url: width: 1000 | image_tag: loading: 'eager', alt: product.title }}
       {% endif %}
-
     </div>
 
-
     <div class="main-product__content">
-
       <h1 class="main-product__title">
         {{ product.title }}
       </h1>
@@ -33,49 +18,44 @@
       </div>
 
       {% if product.description != blank %}
-
         <div class="main-product__description">
           {{ product.description }}
         </div>
-
       {% endif %}
 
-
       {% if product.available %}
-
         <form
-          method="post"
           action="{{ routes.cart_add_url }}"
+          method="post"
           class="product-form"
+          id="product-form"
         >
-
           <input
             type="hidden"
             name="id"
             value="{{ product.selected_or_first_available_variant.id }}"
           >
 
-          <button type="submit">
-            Add to Cart
-          </button>
+          <input
+            type="number"
+            name="quantity"
+            value="1"
+            min="1"
+          >
 
+          <button type="submit">Add to Cart</button>
         </form>
 
       {% else %}
-
         <button
           type="button"
           disabled
         >
           Sold Out
         </button>
-
       {% endif %}
-
     </div>
-
   </div>
-
 </section>
 
 {% schema %}
