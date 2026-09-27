@@ -12,7 +12,7 @@
       {% if block.settings.brand_logo != blank %}
         <div class="brand-card">
           <img
-            src="{block.settings.brand_logo}"
+            src="{block.settings.brand_logo | img_url}"
             alt="Brand 1"
           >
         </div>
