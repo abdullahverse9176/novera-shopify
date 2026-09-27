@@ -12,18 +12,14 @@
     "hero_banner": {
       "type": "hero-banner",
       "settings": {
-        "badge_text": "New Season Arrival 2026",
-        "heading_prefix": "Redefining Modern",
-        "heading_highlight": "Aesthetics & Performance",
-        "subheading": "Discover ultra-refined essentials crafted with precision engineering and timeless luxury minimalism. Tailored for discerning modern collectors.",
-        "primary_button_label": "Explore Collection",
-        "primary_button_link": "",
-        "show_secondary_button": true,
-        "secondary_button_label": "View Lookbook",
-        "secondary_button_link": "",
-        "card_badge": "Flagship Edition",
-        "card_title": "Chronograph Model X",
-        "card_price": "$389.00"
+        "hero_image": "shopify://shop_images/0926_HPHero_AEDraped.avif",
+        "header_subtitle": "NEW COLLECTION",
+        "header_title": "Discover Our Latest Collection",
+        "hero_description": "Explore timeless styles made for everyday living.",
+        "hero_hero_primary_btn": "SHOP NOW",
+        "hero_hero_primary_btn_url": "",
+        "hero_hero_secondary_btn": "VIEW COLLECTION",
+        "hero_hero_secondary_btn_url": ""
       }
     },
     "featured_collection": {
@@ -88,7 +84,7 @@
       "type": "video-banner",
       "name": "Video Section",
       "settings": {
-        "video_url": ""
+        "video_url": "https://www.youtube.com/watch?v=RRv5udKGG68"
       }
     }
   },
