@@ -39,11 +39,12 @@
   font-size: 14px;
   letter-spacing: 3px;
   font-weight: 600;
+  color: white;
 }
 
 .hero-title {
   max-width: 700px;
-
+color: white;
   margin: 0 0 20px;
 
   font-size: 56px;
@@ -52,7 +53,7 @@
 
 .hero-description {
   max-width: 550px;
-
+color: white;
   margin: 0 0 30px;
 
   font-size: 18px;
