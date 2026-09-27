@@ -8,7 +8,10 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
 }
-
+.category-card {
+  background: #fff;
+  border-radius: 5px;
+}
 .category-card .card-img {
   position: relative;
   padding-top: 80%;
@@ -21,7 +24,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  
 }
 
 .category-button {
