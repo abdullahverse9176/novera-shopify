@@ -16,7 +16,7 @@
 <section class="video-section">
   {% if section.settings.banner_video != blank %}
     {{ section.settings.banner_video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
-  {% else %}
+  {% elsif section.settings.video_url != blank %}
     {{ section.settings.video_url | external_video_tag: autoplay: true, loop: true, muted: true, controls: false }}
   {% endif %}
 </section>
