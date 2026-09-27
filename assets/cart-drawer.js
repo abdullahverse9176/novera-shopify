@@ -1,8 +1,8 @@
-$(document).ready(function() {
+// $(document).ready(function() {
 
-  console.log('jQuery chal rahi hai');
+//   console.log('jQuery chal rahi hai');
 
-});
+// });
 
 document.addEventListener("DOMContentLoaded", function () {
 
