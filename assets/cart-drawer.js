@@ -1,106 +1,117 @@
+$(document).ready(function () {
+
+  var $drawer = $('#cart-drawer');
+
+  if (!$drawer.length) {
+    return;
+  }
 
 
-document.addEventListener("DOMContentLoaded", function () {
-
-  const drawer = document.querySelector("#cart-drawer");
-
-  if (!drawer) return;
-
-
+  // Drawer open
   function openCartDrawer() {
-    drawer.classList.add("is-open");
+    $drawer.addClass('is-open');
   }
 
 
+  // Drawer close
   function closeCartDrawer() {
-    drawer.classList.remove("is-open");
+    $drawer.removeClass('is-open');
   }
 
 
-  document.addEventListener("click", function (event) {
-
-    const closeButton = event.target.closest("[data-cart-close]");
-
-    if (closeButton) {
-      closeCartDrawer();
-    }
-
+  // Close button / overlay
+  $(document).on('click', '[data-cart-close]', function () {
+    closeCartDrawer();
   });
 
 
-  document.addEventListener("submit", async function (event) {
-
-    const form = event.target.closest("#product-form");
-
-    if (!form) return;
+  // Add to Cart
+  $(document).on('submit', '#product-form', function (event) {
 
     event.preventDefault();
 
+    var $form = $(this);
 
-    const formData = new FormData(form);
+    $.ajax({
 
+      type: 'POST',
 
-    try {
+      url: window.Shopify.routes.root + 'cart/add.js',
 
-      const response = await fetch(
-        window.Shopify.routes.root + "cart/add.js",
-        {
-          method: "POST",
-          headers: {
-            "Accept": "application/json"
+      data: $form.serialize(),
+
+      dataType: 'json',
+
+      success: function (response) {
+
+        console.log('Product cart mein add ho gaya');
+
+        // Cart ki latest information lao
+        $.ajax({
+
+          type: 'GET',
+
+          url: window.Shopify.routes.root + 'cart.js',
+
+          dataType: 'json',
+
+          success: function (cart) {
+
+            updateCartDrawer(cart);
+
+            openCartDrawer();
+
           },
-          body: formData
-        }
-      );
 
+          error: function (error) {
 
-      if (!response.ok) {
-        throw new Error("Product cart mein add nahi hua.");
+            console.log('Cart data nahi mili:', error);
+
+          }
+
+        });
+
+      },
+
+      error: function (error) {
+
+        console.log('Product cart mein add nahi hua:', error);
+
       }
 
-
-      await response.json();
-
-
-      const cartResponse = await fetch(
-        window.Shopify.routes.root + "cart.js"
-      );
-
-      const cart = await cartResponse.json();
-
-
-      updateCartDrawer(cart);
-
-      openCartDrawer();
-
-    } catch (error) {
-
-      console.error(error);
-
-    }
+    });
 
   });
 
 
+  // Cart Drawer update
   function updateCartDrawer(cart) {
 
-    const container = document.querySelector("#cart-drawer-items");
+    var $container = $('#cart-drawer-items');
 
-    if (!container) return;
-
-
-    if (cart.item_count === 0) {
-
-      container.innerHTML = "<p>Cart khali hai.</p>";
-
+    if (!$container.length) {
       return;
-
     }
 
 
-    container.innerHTML = cart.items.map(function (item) {
+    // Cart empty hai
+    if (cart.item_count === 0) {
 
-      return `
+      $container.html(
+        '<p>Cart khali hai.</p>'
+      );
+
+      return;
+    }
+
+
+    var html = '';
+
+
+    $.each(cart.items, function (index, item) {
+
+      html += `
+
         <div class="cart-item">
 
           <img
@@ -112,10 +123,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
           <div>
 
-            <h3>${item.product_title}</h3>
+            <h3>
+              ${item.product_title}
+            </h3>
 
             <p>
-              ${item.final_line_price / 100}
+              ${formatMoney(item.final_line_price)}
             </p>
 
             <p>
@@ -125,9 +138,21 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
 
         </div>
+
       `;
 
-    }).join("");
+    });
+
+
+    $container.html(html);
+
+  }
+
+
+  // Price ko Shopify format mein dikhana
+  function formatMoney(price) {
+
+    return 'Rs. ' + (price / 100).toFixed(2);
 
   }
 
