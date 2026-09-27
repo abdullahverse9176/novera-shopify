@@ -3,35 +3,6 @@
  * Handles interactive components, mobile navigation drawer, and sticky header
  */
 
-$(document).ready(function () {
-
-  // Quantity Plus
-  $(document).on('click', '.quantity-plus', function () {
-
-    var input = $(this).siblings('.quantity-input');
-
-    var currentValue = parseInt(input.val());
-
-    input.val(currentValue + 1);
-
-  });
-
-
-  // Quantity Minus
-  $(document).on('click', '.quantity-minus', function () {
-
-    var input = $(this).siblings('.quantity-input');
-
-    var currentValue = parseInt(input.val());
-
-    if (currentValue > 1) {
-      input.val(currentValue - 1);
-    }
-
-  });
-
-});
-
 (function () {
   'use strict';
 
