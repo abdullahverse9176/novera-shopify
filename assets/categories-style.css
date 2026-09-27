@@ -11,8 +11,7 @@
 
 .category-card {
   position: relative;
-  overflow: hidden;
-  aspect-ratio: 3 / 4;
+  padding-top: 40%;
 }
 
 .category-card img {
