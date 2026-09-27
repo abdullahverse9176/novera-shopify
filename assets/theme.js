@@ -3,6 +3,10 @@
  * Handles interactive components, mobile navigation drawer, and sticky header
  */
 
+console.log('Theme JS loaded');
+console.log('jQuery:', typeof jQuery);
+console.log('$:', typeof $);
+
 (function () {
   'use strict';
 
