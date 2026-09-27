@@ -3,7 +3,23 @@
   Features: Sticky navigation, announcement bar, logo, accessible links, mobile drawer
 {% endcomment %}
 
-
+{% if section.settings.show_announcement %}
+  <aside class="announcement-bar" role="region" aria-label="Announcement">
+    <div class="container">
+      <span>{{ section.settings.announcement_text | default: 'Free worldwide express shipping on all orders over $75!' }}</span>
+      {% if section.settings.announcement_link != blank %}
+        <a
+          href="{{ section.settings.announcement_link }}"
+          class="announcement-bar__link"
+          aria-label="{{ section.settings.announcement_link_text | default: 'Learn More' }}"
+          title="{{ section.settings.announcement_link_text | default: 'Learn More' }}"
+        >
+          {{ section.settings.announcement_link_text | default: 'Learn More' }}
+        </a>
+      {% endif %}
+    </div>
+  </aside>
+{% endif %}
 
 <header role="banner" class="site-header">
   <div class="container">
@@ -104,3 +120,63 @@
     %}
   </nav>
 </div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free worldwide express shipping on all orders over $75!"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link"
+    },
+    {
+      "type": "text",
+      "id": "announcement_link_text",
+      "label": "Announcement link text",
+      "default": "Learn More"
+    },
+    {
+      "type": "header",
+      "content": "Branding & Navigation"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Store Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 260,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 140
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
