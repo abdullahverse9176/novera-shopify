@@ -1,0 +1,49 @@
+
+
+
+<div class="cart-drawer" id="cart-drawer">
+
+  <div class="cart-drawer__overlay"></div>
+
+  <div class="cart-drawer__content">
+
+    <div class="cart-drawer__header">
+      <h2>Your Cart</h2>
+
+      <button
+        type="button"
+        class="cart-drawer__close"
+        id="cart-drawer-close"
+      >
+        ×
+      </button>
+    </div>
+
+    <div
+      class="cart-drawer__items"
+      id="cart-drawer-items"
+    >
+      <!-- Cart items JavaScript se yahan aayenge -->
+    </div>
+
+    <div class="cart-drawer__footer">
+
+      <div class="cart-drawer__total">
+        <span>Total</span>
+        <strong id="cart-drawer-total">
+          {{ cart.total_price | money }}
+        </strong>
+      </div>
+
+      <a
+        href="{{ routes.cart_url }}"
+        class="cart-drawer__checkout"
+      >
+        Checkout
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
