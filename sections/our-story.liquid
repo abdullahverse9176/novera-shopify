@@ -1,70 +1,52 @@
-
 {{ 'our-story.css' | asset_url | stylesheet_tag }}
 
 <section class="image-text-section">
-
   <div class="image-text-image">
-
     <img
       src="https://via.placeholder.com/800x900"
       alt="Our Story"
     >
-
   </div>
-
 
   <div class="image-text-content">
+    <p class="image-text-subtitle">OUR STORY</p>
 
-    <p class="image-text-subtitle">
-      OUR STORY
-    </p>
-
-    <h2 class="image-text-title">
-      Designed With You In Mind
-    </h2>
+    <h2 class="image-text-title">Designed With You In Mind</h2>
 
     <p class="image-text-description">
-      We create timeless pieces that combine comfort,
-      quality and modern design for everyday life.
+      We create timeless pieces that combine comfort, quality and modern design for everyday life.
     </p>
 
-    <a href="#" class="image-text-button">
-      LEARN MORE
-    </a>
-
+    <a href="#" class="image-text-button"> LEARN MORE </a>
   </div>
-
 </section>
 
 {% schema %}
-
 {
-    "name": "Our Story",
-    "settings": [
-        {
-            "type": "text",
-            "id": "story-subtitle",
-            "label": "Our Story Subtitle",
-            "default": "OUR STORY"
-        },
-        {
-            "type": "text",
-            "id": "story-title",
-            "label": "Our Story Title",
-            "default": "Designed With You In Mind"
-        },
-        {
-        "type": "textarea",
-            "id": "story-description",
-            "label": "Our Story Description",
-            "default": "Designed With You In Mind"
-        }
-    ],
-    "presets": [
-        {
-        "name": "Our Story"
-        }
-    ]
+  "name": "Our Story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "story-subtitle",
+      "label": "Our Story Subtitle",
+      "default": "OUR STORY"
+    },
+    {
+      "type": "text",
+      "id": "story-title",
+      "label": "Our Story Title",
+      "default": "Designed With You In Mind"
+    },
+    {
+      "type": "textarea",
+      "id": "story-description",
+      "label": "Our Story Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story"
+    }
+  ]
 }
-
 {% endschema %}
