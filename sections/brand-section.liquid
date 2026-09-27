@@ -52,12 +52,23 @@
   </div>
 </section>
 
-
 {% schema %}
+{
+  "name": "Brand Section",
+  "settings": [],
+  "blocks": [
     {
-        "name": "Brand Section",
-        "settings": [],
-        "blocks": [],
-        "presets": []
+      "type": "brand",
+      "name": "Brand Section",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "brand_logo",
+          "label": "Brand Logo"
+        }
+      ]
     }
+  ],
+  "presets": []
+}
 {% endschema %}
