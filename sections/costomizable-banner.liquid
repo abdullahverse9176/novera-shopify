@@ -1,6 +1,6 @@
 {{ 'customizable-banner.css' | asset_url | stylesheet_tag }}
 
-<section class="custom-banner" style="padding: {{ section.settings.padding }}px 30px;">
+<section class="custom-banner" style="padding: {{ section.settings.padding }}px 30px; background-color: {{ section.settings.background_color }};"">
   <div class="custom-banner-content {{ section.settings.text_position }}">
     <p class="custom-banner-subtitle">SPECIAL OFFER</p>
 
