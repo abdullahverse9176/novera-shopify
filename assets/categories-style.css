@@ -33,6 +33,9 @@
     letter-spacing: 2px;
     white-space: nowrap;
 }
+.btn-wrapper{
+  text-align: center;
+}
 
 .category-card:hover img {
   transform: scale(1.05);
