@@ -3,31 +3,28 @@
 <section class="brand-section">
   <div class="brand-header">
     <p class="brand-subtitle">OUR PARTNERS</p>
-
     <h2 class="brand-title">Brands We Love</h2>
   </div>
 
   <div class="brand-grid">
     {% for block in section.blocks %}
-      {% if block.settings.brand_logo != blank %}
-        <div class="brand-card">
+      <div class="brand-card" {{ block.shopify_attributes }}>
+        {% if block.settings.brand_logo != blank %}
           <img
-            src="{{ block.settings.brand_logo }}"
-            alt="Brand 1"
+            src="{{ block.settings.brand_logo | image_url: width: 400 }}"
+            alt="Brand logo"
             width="200"
             height="200"
           >
-        </div>
-      {% endif %}
 
-    {% else %}
-      <div class="brand-card">
-        <img
-          src="https://media.istockphoto.com/id/2173059563/vector/coming-soon-image-on-white-background-no-photo-available.jpg?s=612x612&w=0&k=20&c=v0a_B58wPFNDPULSiw_BmPyhSNCyrP_d17i2BPPyDTk="
-          alt="Brand 1"
-          width="200"
-          height="200"
-        >
+        {% else %}
+          <img
+            src="https://media.istockphoto.com/id/2173059563/vector/coming-soon-image-on-white-background-no-photo-available.jpg?s=612x612&w=0&k=20&c=v0a_B58wPFNDPULSiw_BmPyhSNCyrP_d17i2BPPyDTk="
+            alt="Coming soon"
+            width="200"
+            height="200"
+          >
+        {% endif %}
       </div>
     {% endfor %}
   </div>
@@ -40,7 +37,7 @@
   "blocks": [
     {
       "type": "brand",
-      "name": "Brand Section",
+      "name": "Brand",
       "settings": [
         {
           "type": "image_picker",
