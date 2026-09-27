@@ -17,7 +17,7 @@
           </summary>
 
           <div class="faq-answer">
-            <p>Orders are usually delivered within 3–5 business days.</p>
+            <p>{{ block.settings.faq-answer }}</p>
           </div>
         </details>
       {% endfor %}
@@ -35,12 +35,12 @@
       "settings": [
         {
           "type": "text",
-          "id": "faq-question",
+          "id": "faq_question",
           "label": "FAQ Question"
         },
         {
           "type": "text",
-          "id": "faq-answer",
+          "id": "faq_answer",
           "label": "FAQ Answer"
         }
       ]
