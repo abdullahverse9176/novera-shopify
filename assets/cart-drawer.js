@@ -1,31 +1,33 @@
+$(document).on('submit', '#product-form', function (event) {
 
-document.addEventListener("DOMContentLoaded", function () {
+  event.preventDefault();
 
-  const drawer = document.querySelector("#cart-drawer");
+  console.log('FORM ROK DIYA');
 
-  if (!drawer) return;
+  var form = $(this);
 
+  $.ajax({
+    type: 'POST',
+    url: window.Shopify.routes.root + 'cart/add.js',
+    data: form.serialize(),
+    dataType: 'json',
 
-  function openCartDrawer() {
-    drawer.classList.add("is-open");
-  }
+    success: function (response) {
 
+      console.log('PRODUCT CART MEIN ADD HO GAYA');
 
-  function closeCartDrawer() {
-    drawer.classList.remove("is-open");
-  }
+      $('#cart-drawer').addClass('is-open');
 
+    },
 
-  document.addEventListener("click", function (event) {
+    error: function (error) {
 
-    const closeButton = event.target.closest("[data-cart-close]");
+      console.log('ERROR:', error);
 
-    if (closeButton) {
-      closeCartDrawer();
     }
-
   });
 
+});
 
   document.addEventListener("submit", async function (event) {
 
