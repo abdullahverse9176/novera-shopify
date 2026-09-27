@@ -111,6 +111,50 @@
       ],
       "name": "FAQ Section",
       "settings": {}
+    },
+    "brand_section_aBkMeh": {
+      "type": "brand-section",
+      "blocks": {
+        "brand_36atC9": {
+          "type": "brand",
+          "settings": {}
+        },
+        "brand_xXEEi8": {
+          "type": "brand",
+          "settings": {}
+        },
+        "brand_BUDiWA": {
+          "type": "brand",
+          "settings": {}
+        },
+        "brand_e9aGEn": {
+          "type": "brand",
+          "settings": {}
+        },
+        "brand_7L44MA": {
+          "type": "brand",
+          "settings": {}
+        },
+        "brand_RfRXQ3": {
+          "type": "brand",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "brand_36atC9",
+        "brand_xXEEi8",
+        "brand_BUDiWA",
+        "brand_e9aGEn",
+        "brand_7L44MA",
+        "brand_RfRXQ3"
+      ],
+      "name": "Brand Section",
+      "settings": {}
+    },
+    "costomizable_banner_GLHNqn": {
+      "type": "costomizable-banner",
+      "name": "Customizable Banner",
+      "settings": {}
     }
   },
   "order": [
@@ -118,6 +162,8 @@
     "categories_cards_b4LV7d",
     "video_banner_fHFkbc",
     "our_story_3aTPan",
-    "faq_section_FamQ6E"
+    "faq_section_FamQ6E",
+    "brand_section_aBkMeh",
+    "costomizable_banner_GLHNqn"
   ]
 }
