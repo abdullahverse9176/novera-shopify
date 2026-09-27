@@ -1,23 +1,25 @@
 {{ 'our-story.css' | asset_url | stylesheet_tag }}
 
 <section class="image-text-section">
-  <div class="image-text-image">
-    <img
-      src="{section.settings.story-image}"
-      alt="Our Story"
-      width="800"
-      height="900"
-    >
-  </div>
-
-  <div class="image-text-image">
-    <img
-      src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=436&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      alt="Our Story"
-      width="800"
-      height="900"
-    >
-  </div>
+  {% if section.settings['story-image'] != blank %}
+    <div class="image-text-image">
+      <img
+        src="{section.settings.story-image}"
+        alt="Our Story"
+        width="800"
+        height="900"
+      >
+    </div>
+  {% else %}
+    <div class="image-text-image">
+      <img
+        src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=436&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="Our Story"
+        width="800"
+        height="900"
+      >
+    </div>
+  {% endif %}
 
   <div class="image-text-content">
     <p class="image-text-subtitle">OUR STORY</p>
@@ -39,7 +41,7 @@
     {
       "type": "image_picker",
       "id": "story-image",
-      "label": "Our Story Image",
+      "label": "Our Story Image"
     },
     {
       "type": "text",
