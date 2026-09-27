@@ -1,26 +1,5 @@
 
-$(document).on('click', '.quantity-plus', function () {
 
-  var input = $(this).siblings('.quantity-input');
-
-  var value = parseInt(input.val());
-
-  input.val(value + 1);
-
-});
-
-
-$(document).on('click', '.quantity-minus', function () {
-
-  var input = $(this).siblings('.quantity-input');
-
-  var value = parseInt(input.val());
-
-  if (value > 1) {
-    input.val(value - 1);
-  }
-
-});
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -151,6 +130,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }).join("");
 
+  }
+
+});
+$(document).on('click', '.quantity-plus', function () {
+
+  var input = $(this).siblings('.quantity-input');
+
+  var value = parseInt(input.val());
+
+  input.val(value + 1);
+
+});
+
+
+$(document).on('click', '.quantity-minus', function () {
+
+  var input = $(this).siblings('.quantity-input');
+
+  var value = parseInt(input.val());
+
+  if (value > 1) {
+    input.val(value - 1);
   }
 
 });
