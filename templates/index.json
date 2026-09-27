@@ -82,6 +82,13 @@
     "faq_section_FamQ6E": {
       "type": "faq-section",
       "blocks": {
+        "faq_item_MrizNg": {
+          "type": "faq-item",
+          "settings": {
+            "faq_question": "Can I return my order?",
+            "faq_answer": "Yes. You can return eligible items within 30 days."
+          }
+        },
         "faq_item_eayQgX": {
           "type": "faq-item",
           "settings": {
@@ -91,6 +98,7 @@
         }
       },
       "block_order": [
+        "faq_item_MrizNg",
         "faq_item_eayQgX"
       ],
       "name": "FAQ Section",
