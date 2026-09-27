@@ -1,139 +1,107 @@
-$(document).ready(function () {
 
 
-  // =========================
-  // QUANTITY PLUS
-  // =========================
 
-  $(document).on('click', '.quantity-plus', function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-    var input = $(this).siblings('.quantity-input');
+  const drawer = document.querySelector("#cart-drawer");
 
-    var currentValue = parseInt(input.val());
-
-    input.val(currentValue + 1);
-
-  });
+  if (!drawer) return;
 
 
-  // =========================
-  // QUANTITY MINUS
-  // =========================
+  function openCartDrawer() {
+    drawer.classList.add("is-open");
+  }
 
-  $(document).on('click', '.quantity-minus', function () {
 
-    var input = $(this).siblings('.quantity-input');
+  function closeCartDrawer() {
+    drawer.classList.remove("is-open");
+  }
 
-    var currentValue = parseInt(input.val());
 
-    if (currentValue > 1) {
-      input.val(currentValue - 1);
+  document.addEventListener("click", function (event) {
+
+    const closeButton = event.target.closest("[data-cart-close]");
+
+    if (closeButton) {
+      closeCartDrawer();
     }
 
   });
 
 
-  // =========================
-  // ADD TO CART
-  // =========================
+  document.addEventListener("submit", async function (event) {
 
-  $(document).on('submit', '#product-form', function (event) {
+    const form = event.target.closest("#product-form");
+
+    if (!form) return;
 
     event.preventDefault();
 
-    var form = $(this);
 
-    console.log('Add to Cart clicked');
+    const formData = new FormData(form);
 
 
-    $.ajax({
+    try {
 
-      type: 'POST',
+      const response = await fetch(
+        window.Shopify.routes.root + "cart/add.js",
+        {
+          method: "POST",
+          headers: {
+            "Accept": "application/json"
+          },
+          body: formData
+        }
+      );
 
-      url: window.Shopify.routes.root + 'cart/add.js',
 
-      data: form.serialize(),
-
-      dataType: 'json',
-
-      success: function (response) {
-
-        console.log('Product cart mein add ho gaya');
-
-        getCart();
-
-      },
-
-      error: function (error) {
-
-        console.log('Add to Cart Error:', error);
-
+      if (!response.ok) {
+        throw new Error("Product cart mein add nahi hua.");
       }
 
-    });
+
+      await response.json();
+
+
+      const cartResponse = await fetch(
+        window.Shopify.routes.root + "cart.js"
+      );
+
+      const cart = await cartResponse.json();
+
+
+      updateCartDrawer(cart);
+
+      openCartDrawer();
+
+    } catch (error) {
+
+      console.error(error);
+
+    }
 
   });
 
 
-  // =========================
-  // GET CART
-  // =========================
-
-  function getCart() {
-
-    $.ajax({
-
-      type: 'GET',
-
-      url: window.Shopify.routes.root + 'cart.js',
-
-      dataType: 'json',
-
-      success: function (cart) {
-
-        console.log('Latest Cart:', cart);
-
-        updateCartDrawer(cart);
-
-        openCartDrawer();
-
-      },
-
-      error: function (error) {
-
-        console.log('Cart Error:', error);
-
-      }
-
-    });
-
-  }
-
-
-  // =========================
-  // UPDATE CART DRAWER
-  // =========================
-
   function updateCartDrawer(cart) {
 
-    var container = $('#cart-drawer-items');
+    const container = document.querySelector("#cart-drawer-items");
 
-    var html = '';
+    if (!container) return;
 
 
     if (cart.item_count === 0) {
 
-      container.html('<p>Cart khali hai.</p>');
+      container.innerHTML = "<p>Cart khali hai.</p>";
 
       return;
 
     }
 
 
-    $.each(cart.items, function (index, item) {
+    container.innerHTML = cart.items.map(function (item) {
 
-      html += `
-
+      return `
         <div class="cart-item">
 
           <img
@@ -145,12 +113,10 @@ $(document).ready(function () {
 
           <div>
 
-            <h3>
-              ${item.product_title}
-            </h3>
+            <h3>${item.product_title}</h3>
 
             <p>
-              Rs. ${(item.final_line_price / 100).toFixed(2)}
+              ${item.final_line_price / 100}
             </p>
 
             <p>
@@ -160,44 +126,32 @@ $(document).ready(function () {
           </div>
 
         </div>
-
       `;
 
-    });
-
-
-    container.html(html);
-
-
-    // Total update
-
-    $('#cart-drawer-total').text(
-      'Rs. ' + (cart.total_price / 100).toFixed(2)
-    );
+    }).join("");
 
   }
 
+});
+$(document).on('click', '.quantity-plus', function () {
 
-  // =========================
-  // OPEN DRAWER
-  // =========================
+  var input = $(this).siblings('.quantity-input');
 
-  function openCartDrawer() {
+  var value = parseInt(input.val());
 
-    $('#cart-drawer').addClass('is-open');
+  input.val(value + 1);
 
+});
+
+
+$(document).on('click', '.quantity-minus', function () {
+
+  var input = $(this).siblings('.quantity-input');
+
+  var value = parseInt(input.val());
+
+  if (value > 1) {
+    input.val(value - 1);
   }
-
-
-  // =========================
-  // CLOSE DRAWER
-  // =========================
-
-  $(document).on('click', '[data-cart-close]', function () {
-
-    $('#cart-drawer').removeClass('is-open');
-
-  });
-
 
 });
