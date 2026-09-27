@@ -1,3 +1,5 @@
+{{ 'cart-drawer.js' | asset_url | script_tag }}
+
 $(document).ready(function () {
 
   var $drawer = $('#cart-drawer');
