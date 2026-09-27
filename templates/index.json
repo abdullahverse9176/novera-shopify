@@ -82,6 +82,13 @@
     "faq_section_FamQ6E": {
       "type": "faq-section",
       "blocks": {
+        "faq_item_eJ8VJf": {
+          "type": "faq-item",
+          "settings": {
+            "faq_question": "How can I track my order?",
+            "faq_answer": "Once your order ships, you will receive a tracking link by email."
+          }
+        },
         "faq_item_MrizNg": {
           "type": "faq-item",
           "settings": {
@@ -98,6 +105,7 @@
         }
       },
       "block_order": [
+        "faq_item_eJ8VJf",
         "faq_item_MrizNg",
         "faq_item_eayQgX"
       ],
