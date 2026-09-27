@@ -1,0 +1,39 @@
+<div class="main-collection">
+  <div class="page-width">
+    <h1>{{ collection.title }}</h1>
+
+    <div class="collection-products">
+      {% for product in collection.products %}
+        <div class="product-card">
+          {% if product.featured_image %}
+            <a href="{{ product.url }}">
+              <img
+                src="{{ product.featured_image | image_url: width: 500 }}"
+                alt="{{ product.title }}"
+                width="500"
+                height="500"
+              >
+            </a>
+          {% endif %}
+
+          <h2>
+            <a href="{{ product.url }}">
+              {{ product.title }}
+            </a>
+          </h2>
+
+          <p>
+            {{ product.price | money }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Collection",
+  "settings": []
+}
+{% endschema %}
