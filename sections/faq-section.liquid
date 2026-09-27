@@ -12,12 +12,12 @@
       {% for block in blocks %}
         <details class="faq-item">
           <summary class="faq-question">
-            {{block.settings.faq-question}}
+            {{ block.settings.faq_question }}
             <span class="faq-icon">+</span>
           </summary>
 
           <div class="faq-answer">
-            <p>{{ block.settings.faq-answer }}</p>
+            <p>{{ block.settings.faq_question }}</p>
           </div>
         </details>
       {% endfor %}
