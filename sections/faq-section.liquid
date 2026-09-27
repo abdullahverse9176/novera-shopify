@@ -9,19 +9,19 @@
     </div>
 
     <div class="faq-list">
+      {% for block in blocks %}
+        <details class="faq-item">
+          <summary class="faq-question">
+            How long does shipping take?
 
-      <details class="faq-item">
-        <summary class="faq-question">
-          How long does shipping take?
+            <span class="faq-icon">+</span>
+          </summary>
 
-          <span class="faq-icon">+</span>
-        </summary>
-
-        <div class="faq-answer">
-          <p>Orders are usually delivered within 3–5 business days.</p>
-        </div>
-      </details>
-      
+          <div class="faq-answer">
+            <p>Orders are usually delivered within 3–5 business days.</p>
+          </div>
+        </details>
+      {% endfor %}
     </div>
   </div>
 </section>
