@@ -1,35 +1,115 @@
-<div class="main-collection">
-  <div class="page-width">
-    <h1>{{ collection.title }}</h1>
+<section class="main-collection">
 
-    <div class="collection-products">
-      {% for product in collection.products %}
-        <div class="product-card">
-          {% if product.featured_image %}
-            <a href="{{ product.url }}">
-              <img
-                src="{{ product.featured_image | image_url: width: 500 }}"
-                alt="{{ product.title }}"
-                width="500"
-                height="500"
-              >
-            </a>
-          {% endif %}
+  <div class="main-collection__container">
 
-          <h2>
-            <a href="{{ product.url }}">
-              {{ product.title }}
-            </a>
-          </h2>
+    <!-- Collection Header -->
+    <div class="collection-header">
 
-          <p>
-            {{ product.price | money }}
-          </p>
+      <h1 class="collection-title">
+        {{ collection.title }}
+      </h1>
+
+      {% if collection.description != blank %}
+        <div class="collection-description">
+          {{ collection.description }}
         </div>
-      {% endfor %}
+      {% endif %}
+
     </div>
+
+
+    <!-- Products -->
+    {% if collection.products_count > 0 %}
+
+      <div class="collection-grid">
+
+        {% for product in collection.products %}
+
+          <article class="product-card">
+
+            <!-- Product Image -->
+            <div class="product-card__image">
+
+              <a href="{{ product.url }}">
+
+                {% if product.featured_image != blank %}
+
+                  {{
+                    product.featured_image
+                    | image_url: width: 600
+                    | image_tag:
+                      loading: 'lazy',
+                      alt: product.title
+                  }}
+
+                {% else %}
+
+                  {{ 'product-1' | placeholder_svg_tag }}
+
+                {% endif %}
+
+              </a>
+
+            </div>
+
+
+            <!-- Product Information -->
+            <div class="product-card__content">
+
+              <h2 class="product-card__title">
+
+                <a href="{{ product.url }}">
+                  {{ product.title }}
+                </a>
+
+              </h2>
+
+
+              <div class="product-card__price">
+
+                {{ product.price | money }}
+
+              </div>
+
+
+              {% if product.available %}
+
+                <span class="product-card__availability">
+                  Available
+                </span>
+
+              {% else %}
+
+                <span class="product-card__availability product-card__availability--sold">
+                  Sold Out
+                </span>
+
+              {% endif %}
+
+            </div>
+
+          </article>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <div class="collection-empty">
+
+        <h2>
+          Is collection mein koi product nahi hai.
+        </h2>
+
+      </div>
+
+    {% endif %}
+
   </div>
-</div>
+
+</section>
+
 
 {% schema %}
 {
