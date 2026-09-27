@@ -79,12 +79,22 @@
       "settings": {
         "video_url": "https://www.youtube.com/watch?v=RRv5udKGG68"
       }
+    },
+    "our_story_3aTPan": {
+      "type": "our-story",
+      "name": "Our Story",
+      "settings": {
+        "story-subtitle": "OUR STORY",
+        "story-title": "Designed With You In Mind",
+        "story-description": ""
+      }
     }
   },
   "order": [
     "hero_banner",
     "featured_collection",
     "categories_cards_b4LV7d",
-    "video_banner_fHFkbc"
+    "video_banner_fHFkbc",
+    "our_story_3aTPan"
   ]
 }
