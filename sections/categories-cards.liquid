@@ -19,9 +19,11 @@
             height="100"
           >
         {% endif %}
-        <a href="{{block.settings.category_card_url}}" class="category-button">
-          {{ block.settings.category_card_btn }}
-        </a>
+        <div>
+          <a href="{{block.settings.category_card_url}}" class="category-button">
+            {{ block.settings.category_card_btn }}
+          </a>
+        </div>
       </div>
     {% endfor %}
   </div>
@@ -38,7 +40,7 @@
         {
           "type": "image_picker",
           "id": "category_card_image",
-          "label": "Category Card Image",
+          "label": "Category Card Image"
         },
         {
           "type": "text",
