@@ -13,7 +13,6 @@
     {% for product in collection.products limit: section.settings.products_to_show %}
       <div class="product-card">
         <div class="product-card__image">
-
           <img
             src="{{ product.featured_image | image_url: width: 600 }}"
             alt="Product Name"
@@ -32,7 +31,22 @@
           <div class="product-card__price">
             <span class="product-card__price--sale"> {{ product.price | money }} </span>
 
-            <span class="product-card__price--compare"> $69.00 </span>
+            <span class="product-card__price--compare">
+              {% if product.compare_at_price > product.price %}
+                <span class="product-card__price--sale">
+                  {{ product.price | money }}
+                </span>
+
+                <span class="product-card__price--compare">
+                  {{ product.compare_at_price | money }}
+                </span>
+
+              {% else %}
+                <span class="product-card__price--sale">
+                  {{ product.price | money }}
+                </span>
+              {% endif %}
+            </span>
           </div>
 
           <button class="product-card__button">Add to Cart</button>
