@@ -1,11 +1,7 @@
-
-
 {{ 'featured-collection.css' | asset_url | stylesheet_tag }}
 
 <section class="featured-products">
-
   <div class="featured-products__header">
-
     {% if section.settings.subtitle != blank %}
       <p class="featured-products__subtitle">
         {{ section.settings.subtitle }}
@@ -21,26 +17,19 @@
         {{ section.settings.description }}
       </p>
     {% endif %}
-
   </div>
-
 
   {% assign collection = section.settings.collection %}
 
   {% if collection != blank %}
-
     <div class="products-grid">
-
       {% for product in collection.products limit: section.settings.products_to_show %}
-
         <div class="product-card">
-
           <!-- Product Image -->
           <a
             href="{{ product.url }}"
             class="product-card__image"
           >
-
             {% if product.featured_image %}
               <img
                 src="{{ product.featured_image | image_url: width: 600 }}"
@@ -51,41 +40,29 @@
               >
             {% endif %}
 
-
             <!-- Sale Badge -->
             {% if product.compare_at_price > product.price %}
-              <span class="product-card__badge">
-                Sale
-              </span>
+              <span class="product-card__badge"> Sale </span>
             {% endif %}
-
           </a>
-
 
           <!-- Product Content -->
           <div class="product-card__content">
-
             {% if product.vendor != blank %}
               <p class="product-card__vendor">
                 {{ product.vendor }}
               </p>
             {% endif %}
 
-
             <h3 class="product-card__title">
-
               <a href="{{ product.url }}">
                 {{ product.title }}
               </a>
-
             </h3>
-
 
             <!-- Price -->
             <div class="product-card__price">
-
               {% if product.compare_at_price > product.price %}
-
                 <span class="product-card__price--sale">
                   {{ product.price | money }}
                 </span>
@@ -95,15 +72,11 @@
                 </span>
 
               {% else %}
-
                 <span class="product-card__price--sale">
                   {{ product.price | money }}
                 </span>
-
               {% endif %}
-
             </div>
-
 
             <!-- View Product Button -->
             <a
@@ -112,32 +85,21 @@
             >
               View Product
             </a>
-
           </div>
-
         </div>
-
       {% endfor %}
-
     </div>
 
   {% else %}
-
-    <p>
-      Please select a collection.
-    </p>
-
+    <p>Please select a collection.</p>
   {% endif %}
-
 </section>
-
 
 {% schema %}
 {
   "name": "Featured Products",
 
   "settings": [
-
     {
       "type": "text",
       "id": "subtitle",
@@ -174,7 +136,6 @@
       "step": 1,
       "default": 4
     }
-
   ],
 
   "presets": [
