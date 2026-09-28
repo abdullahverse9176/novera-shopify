@@ -10,75 +10,34 @@
   </div>
 
   <div class="products-grid">
-    <div class="product-card">
-      <div class="product-card__image">
-        <img
-          src="https://placehold.co/600x700"
-          alt="Product Name"
-          width="600"
-          height="700"
-        >
+    {% for product in collection.products %}
+      <div class="product-card">
+        <div class="product-card__image">
+          
+          <img
+            src="https://placehold.co/600x700"
+            alt="Product Name"
+            width="600"
+            height="700"
+          >
 
-        <span class="product-card__badge"> Sale </span>
-      </div>
-
-      <div class="product-card__content">
-        <p class="product-card__vendor">Brand Name</p>
-
-        <h3 class="product-card__title">Classic Cotton Shirt</h3>
-
-        <div class="product-card__price">
-          <span class="product-card__price--sale"> $49.00 </span>
-
-          <span class="product-card__price--compare"> $69.00 </span>
+          <span class="product-card__badge"> Sale </span>
         </div>
 
-        <button class="product-card__button">Add to Cart</button>
+        <div class="product-card__content">
+          <p class="product-card__vendor">Brand Name</p>
+
+          <h3 class="product-card__title">Classic Cotton Shirt</h3>
+
+          <div class="product-card__price">
+            <span class="product-card__price--sale"> $49.00 </span>
+
+            <span class="product-card__price--compare"> $69.00 </span>
+          </div>
+
+          <button class="product-card__button">Add to Cart</button>
+        </div>
       </div>
-    </div>
+    {% endfor %}
   </div>
 </section>
-
-{% schema %}
-{
-  "name": "Featured Collection",
-  "settings": [],
-  "blocks": [
-    {
-      "type": "f-collection",
-      "name": "f-collection-item",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "product_image",
-          "label": "Product Image"
-        },
-        {
-          "type": "text",
-          "id": "brand_name",
-          "label": "Brand Name"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Featured Collection",
-      "blocks": [
-        {
-          "type": "f-collection"
-        },
-        {
-          "type": "f-collection"
-        },
-        {
-          "type": "f-collection"
-        },
-        {
-          "type": "f-collection"
-        }
-      ]
-    }
-  ]
-}
-{% endschema %}
