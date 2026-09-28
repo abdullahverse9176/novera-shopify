@@ -55,6 +55,7 @@
 .product-card__image {
   position: relative;
   padding-top: 40%;
+  display: block;
 }
 
 .product-card__image img {
