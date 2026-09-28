@@ -154,6 +154,33 @@
     "costomizable_banner_GLHNqn": {
       "type": "costomizable-banner",
       "name": "Customizable Banner",
+      "settings": {
+        "text_position": "center",
+        "show_button": true,
+        "padding": 100,
+        "background_color": "#eeeeee",
+        "btn_bg_color": "#000000"
+      }
+    },
+    "featured_collection_H6jEnj": {
+      "type": "featured-collection",
+      "blocks": {
+        "f_collection_endQhP": {
+          "type": "f-collection",
+          "settings": {
+            "product_image": "shopify://shop_images/10540R-ChampagneBeige_PDP_038_HN.webp"
+          }
+        },
+        "f_collection_AA4ChX": {
+          "type": "f-collection",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "f_collection_endQhP",
+        "f_collection_AA4ChX"
+      ],
+      "name": "Featured Collection",
       "settings": {}
     }
   },
@@ -164,6 +191,7 @@
     "our_story_3aTPan",
     "faq_section_FamQ6E",
     "brand_section_aBkMeh",
-    "costomizable_banner_GLHNqn"
+    "costomizable_banner_GLHNqn",
+    "featured_collection_H6jEnj"
   ]
 }
