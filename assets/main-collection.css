@@ -102,6 +102,147 @@
 
 /* Tablet */
 
+/* ========================================
+   Collection Layout
+======================================== */
+
+.collection-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+
+/* ========================================
+   Filter Sidebar
+======================================== */
+
+.collection-filters {
+  border: 1px solid #e5e5e5;
+  padding: 20px;
+  background: #fff;
+}
+
+.filter-group {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.filter-title {
+  margin: 0 0 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+/* ========================================
+   Filter Options
+======================================== */
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter-option:last-child {
+  margin-bottom: 0;
+}
+
+.filter-option input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.filter-option span {
+  flex: 1;
+}
+
+.filter-option small {
+  color: #777;
+  font-size: 12px;
+}
+
+
+/* ========================================
+   Apply Filter Button
+======================================== */
+
+.collection-filters button[type="submit"] {
+  width: 100%;
+  padding: 12px 20px;
+  border: 0;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.collection-filters button[type="submit"]:hover {
+  background: #333;
+}
+
+
+/* ========================================
+   Filter Toggle
+======================================== */
+
+.filter-toggle {
+  display: none;
+}
+
+
+/* ========================================
+   Products Area
+======================================== */
+
+.collection-products {
+  min-width: 0;
+}
+
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media screen and (max-width: 768px) {
+
+  .collection-layout {
+    display: block;
+  }
+
+  .filter-toggle {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .collection-filters {
+    margin-bottom: 25px;
+  }
+
+}
+
 @media screen and (max-width: 990px) {
 
   .collection-grid {
