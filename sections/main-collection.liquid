@@ -1,63 +1,42 @@
 {{ 'main-collection.css' | asset_url | stylesheet_tag }}
 
 <div class="collection-toolbar">
-
   <button
     type="button"
     class="filter-toggle"
   >
     Filters
   </button>
-
 </div>
 
-
 <div class="collection-layout">
+  <!--
+    =================================
+         FILTER SIDEBAR
+    ==================================
+  -->
 
-  <!-- =================================
-       FILTER SIDEBAR
-  ================================== -->
-
-  <div class="collection-header">
-
-        <h1 class="collection-title">
-          {{ collection.title }}
-        </h1>
-
-
-        {% if collection.description != blank %}
-
-          <div class="collection-description">
-            {{ collection.description }}
-          </div>
-
-        {% endif %}
-
-      </div>
+  <h2 class="collection-title">
+    {{ collection.title }}
+  </h2>
 
   <aside class="collection-filters">
-
     <form method="get">
-
       {% for filter in collection.filters %}
-
         <div class="filter-group">
-
           <h3 class="filter-title">
             {{ filter.label }}
           </h3>
 
-
-          <!-- =================================
-               AVAILABILITY FILTER
-          ================================== -->
+          <!--
+            =================================
+                 AVAILABILITY FILTER
+            ==================================
+          -->
 
           {% if filter.type == 'boolean' %}
-
             {% if filter.true_value != blank %}
-
               <label class="filter-option">
-
                 <input
                   type="checkbox"
                   name="{{ filter.param_name }}"
@@ -77,16 +56,11 @@
                 <small>
                   {{ filter.true_value.count }}
                 </small>
-
               </label>
-
             {% endif %}
 
-
             {% if filter.false_value != blank %}
-
               <label class="filter-option">
-
                 <input
                   type="checkbox"
                   name="{{ filter.param_name }}"
@@ -106,25 +80,19 @@
                 <small>
                   {{ filter.false_value.count }}
                 </small>
-
               </label>
-
             {% endif %}
 
-
-          <!-- =================================
-               PRICE FILTER
-          ================================== -->
+            <!--
+              =================================
+                   PRICE FILTER
+              ==================================
+            -->
 
           {% elsif filter.type == 'price_range' %}
-
             <div class="price-filter">
-
               <div class="price-field">
-
-                <label for="price-min">
-                  Min
-                </label>
+                <label for="price-min"> Min </label>
 
                 <input
                   id="price-min"
@@ -137,15 +105,10 @@
                   min="0"
                   max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
                 >
-
               </div>
 
-
               <div class="price-field">
-
-                <label for="price-max">
-                  Max
-                </label>
+                <label for="price-max"> Max </label>
 
                 <input
                   id="price-max"
@@ -158,23 +121,19 @@
                   min="0"
                   max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
                 >
-
               </div>
-
             </div>
 
-
-          <!-- =================================
-               LIST FILTERS
-               Color / Size / Vendor / Type etc.
-          ================================== -->
+            <!--
+              =================================
+                   LIST FILTERS
+                   Color / Size / Vendor / Type etc.
+              ==================================
+            -->
 
           {% elsif filter.type == 'list' %}
-
             {% for value in filter.values %}
-
               <label class="filter-option">
-
                 <input
                   type="checkbox"
                   name="{{ value.param_name }}"
@@ -194,21 +153,17 @@
                 <small>
                   {{ value.count }}
                 </small>
-
               </label>
-
             {% endfor %}
-
           {% endif %}
-
         </div>
-
       {% endfor %}
 
-
-      <!-- =================================
-           APPLY BUTTON
-      ================================== -->
+      <!--
+        =================================
+             APPLY BUTTON
+        ==================================
+      -->
 
       <button
         type="submit"
@@ -217,10 +172,11 @@
         Apply Filters
       </button>
 
-
-      <!-- =================================
-           CLEAR FILTERS
-      ================================== -->
+      <!--
+        =================================
+             CLEAR FILTERS
+        ==================================
+      -->
 
       <a
         href="{{ collection.url }}"
@@ -228,133 +184,91 @@
       >
         Clear Filters
       </a>
-
     </form>
-
   </aside>
 
-
-  <!-- =================================
-       COLLECTION CONTENT
-  ================================== -->
+  <!--
+    =================================
+         COLLECTION CONTENT
+    ==================================
+  -->
 
   <section class="main-collection">
-
     <div class="main-collection__container">
-
-
-      <!-- =================================
-           COLLECTION HEADER
-      ================================== -->
+      <!--
+        =================================
+             COLLECTION HEADER
+        ==================================
+      -->
 
       <div class="collection-header">
-
         <h1 class="collection-title">
           {{ collection.title }}
         </h1>
 
-
         {% if collection.description != blank %}
-
           <div class="collection-description">
             {{ collection.description }}
           </div>
-
         {% endif %}
-
       </div>
 
-
-      <!-- =================================
-           PRODUCTS
-      ================================== -->
+      <!--
+        =================================
+             PRODUCTS
+        ==================================
+      -->
 
       {% if collection.products_count > 0 %}
-
         <div class="collection-grid">
-
           {% for product in collection.products %}
-
             <article class="product-card">
-
-
               <!-- PRODUCT IMAGE -->
 
               <div class="product-card__image">
-
                 <a href="{{ product.url }}">
-
                   {% if product.featured_image != blank %}
-
                     {{
                       product.featured_image
                       | image_url: width: 600
-                      | image_tag:
-                        loading: 'lazy',
-                        alt: product.title
+                      | image_tag: loading: 'lazy', alt: product.title
                     }}
 
                   {% else %}
-
                     {{ 'product-1' | placeholder_svg_tag }}
-
                   {% endif %}
-
                 </a>
-
               </div>
-
 
               <!-- PRODUCT CONTENT -->
 
               <div class="product-card__content">
-
                 <h2 class="product-card__title">
-
                   <a href="{{ product.url }}">
                     {{ product.title }}
                   </a>
-
                 </h2>
-
 
                 <div class="product-card__price">
                   {{ product.price | money }}
                 </div>
 
-
                 {% if product.available %}
-
-                  <span class="product-card__availability">
-                    Available
-                  </span>
+                  <span class="product-card__availability"> Available </span>
 
                 {% else %}
-
-                  <span class="product-card__availability product-card__availability--sold">
-                    Sold Out
-                  </span>
-
+                  <span class="product-card__availability product-card__availability--sold"> Sold Out </span>
                 {% endif %}
-
               </div>
-
             </article>
-
           {% endfor %}
-
         </div>
 
-
       {% else %}
-
         <!-- NO PRODUCTS -->
 
         <div class="collection-empty">
-
-          <h2>
-            There's no product in this collection.
-          </h2>
+          <h2>There's no product in this collection.</h2>
 
           <a
             href="{{ collection.url }}"
@@ -362,23 +276,15 @@
           >
             Clear Filters
           </a>
-
         </div>
-
       {% endif %}
-
     </div>
-
   </section>
-
 </div>
 
-
 {% schema %}
-
 {
   "name": "Main Collection",
   "settings": []
 }
-
 {% endschema %}
