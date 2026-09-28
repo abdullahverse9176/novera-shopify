@@ -213,6 +213,130 @@
   min-width: 0;
 }
 
+/* ================================
+   PRICE FILTER
+================================ */
+
+.price-filter {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.price-field {
+  flex: 1;
+}
+
+.price-field label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price-field input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  box-sizing: border-box;
+
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+
+  background: #fafafa;
+  color: #111;
+
+  font-size: 14px;
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* Input focus */
+
+.price-field input:focus {
+  border-color: #111;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Remove number arrows */
+
+.price-field input::-webkit-outer-spin-button,
+.price-field input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.price-field input[type="number"] {
+  appearance: textfield;
+}
+
+
+/* ================================
+   PRICE RANGE SEPARATOR
+================================ */
+
+.price-filter {
+  position: relative;
+}
+
+.price-filter::before {
+  content: "—";
+
+  position: absolute;
+  left: 50%;
+  bottom: 13px;
+
+  transform: translateX(-50%);
+
+  color: #999;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+
+/* ================================
+   APPLY BUTTON
+================================ */
+
+.collection-filters button[type="submit"] {
+  width: 100%;
+  height: 46px;
+
+  margin-top: 8px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #111;
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.collection-filters button[type="submit"]:hover {
+  background: #333;
+}
+
+.collection-filters button[type="submit"]:active {
+  transform: scale(0.98);
+}
 
 /* ========================================
    Mobile
