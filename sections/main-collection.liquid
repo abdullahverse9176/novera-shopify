@@ -16,11 +16,11 @@
     ==================================
   -->
 
-  <h2 class="collection-title">
-    {{ collection.title }}
-  </h2>
-
   <aside class="collection-filters">
+    <h2 class="collection-title">
+      {{ collection.title }}
+    </h2>
+
     <form method="get">
       {% for filter in collection.filters %}
         <div class="filter-group">
