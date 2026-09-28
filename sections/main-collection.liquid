@@ -1,6 +1,68 @@
 {{ 'main-collection.css' | asset_url | stylesheet_tag }}
 
-<section class="main-collection">
+
+<div class="collection-toolbar">
+
+  <button type="button" class="filter-toggle">
+    Filters
+  </button>
+
+</div>
+
+<div class="collection-layout">
+
+  <aside class="collection-filters">
+
+    <form method="get">
+
+      {% for filter in collection.filters %}
+
+        <div class="filter-group">
+
+          <h3 class="filter-title">
+            {{ filter.label }}
+          </h3>
+
+          {% for value in filter.values %}
+
+            <label class="filter-option">
+
+              <input
+                type="checkbox"
+                name="{{ value.param_name }}"
+                value="{{ value.value }}"
+                {% if value.active %}
+                  checked
+                {% endif %}
+              >
+
+              <span>
+                {{ value.label }}
+              </span>
+
+              <small>
+                {{ value.count }}
+              </small>
+
+            </label>
+
+          {% endfor %}
+
+        </div>
+
+      {% endfor %}
+
+      <button type="submit">
+        Apply Filters
+      </button>
+
+    </form>
+
+  </aside>
+
+  <div class="collection-products">
+    
+   <section class="main-collection">
   <div class="main-collection__container">
     <!-- Collection Header -->
     <div class="collection-header">
@@ -62,6 +124,13 @@
     {% endif %}
   </div>
 </section>
+
+  </div>
+
+</div>
+
+
+
 
 {% schema %}
 {
