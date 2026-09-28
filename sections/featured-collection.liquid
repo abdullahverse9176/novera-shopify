@@ -15,7 +15,7 @@
         <div class="product-card__image">
 
           <img
-            src="{product.featured_image}"
+            src="{{ product.featured_image | image_url: width: 600 }}"
             alt="Product Name"
             width="600"
             height="700"
