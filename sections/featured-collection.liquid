@@ -10,7 +10,7 @@
   </div>
 
   <div class="products-grid">
-    {% for product in collection.products %}
+    {% for product in collection.products limit: section.settings.products_to_show %}
       <div class="product-card">
         <div class="product-card__image">
 
