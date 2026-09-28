@@ -1,89 +1,177 @@
-{% comment %}
-  Featured Collection Section
-  Strictly adheres to:
-  - Heading Hierarchy: Section title is <h2>, product titles inside snippets are <h3>
-  - Semantic HTML tags (<section>, <header>, <article>, <figure>)
-  - Reusable card-product snippet
-{% endcomment %}
+<section class="featured-products">
 
-<section class="featured-collection-section" aria-label="Featured Collection Showcase">
-  <div class="container">
-    <!-- Section Header with strict <h2> tag -->
-    <header class="section-header">
-      {% if section.settings.badge != blank %}
-        <span class="section-header__badge">{{ section.settings.badge | escape }}</span>
-      {% endif %}
+  <div class="featured-products__header">
+    <p class="featured-products__subtitle">OUR COLLECTION</p>
 
-      <h2 class="section-header__title">
-        {{ section.settings.title | default: 'Featured Innovations' }}
-      </h2>
+    <h2 class="featured-products__title">
+      Featured Products
+    </h2>
 
-      {% if section.settings.description != blank %}
-        <p class="section-header__description">
-          {{ section.settings.description | escape }}
-        </p>
-      {% endif %}
-    </header>
-
-    <!-- Product Grid -->
-    <div class="product-grid">
-      {% assign selected_collection = collections[section.settings.collection] %}
-      {% if selected_collection != blank and selected_collection.products.size > 0 %}
-        {% for product in selected_collection.products limit: section.settings.products_to_show %}
-          {% render 'card-product', product: product %}
-        {% endfor %}
-      {% else %}
-        {% comment %} Elegant fallback showcase items when no collection is linked yet {% endcomment %}
-        {% render 'card-product', badge: 'Best Seller' %}
-        {% render 'card-product', badge: 'New Arrival' %}
-        {% render 'card-product', badge: 'Limited Edition' %}
-        {% render 'card-product', badge: 'Signature Series' %}
-      {% endif %}
-    </div>
+    <p class="featured-products__description">
+      Discover our latest and most popular products.
+    </p>
   </div>
-</section>
 
-{% schema %}
-{
-  "name": "Featured Collection",
-  "settings": [
-    {
-      "type": "text",
-      "id": "badge",
-      "label": "Badge",
-      "default": "Curated Selection"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Featured Innovations"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Description",
-      "default": "Explore our handpicked curation of precision gear, crafted for those who demand excellence in every detail."
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 2,
-      "max": 12,
-      "step": 1,
-      "default": 4,
-      "label": "Products to show"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Featured Collection"
-    }
-  ]
-}
-{% endschema %}
+
+  <div class="products-grid">
+
+    <!-- Product 1 -->
+    <div class="product-card">
+
+      <div class="product-card__image">
+        <img
+          src="https://placehold.co/600x700"
+          alt="Product Name"
+        >
+
+        <span class="product-card__badge">
+          Sale
+        </span>
+      </div>
+
+      <div class="product-card__content">
+
+        <p class="product-card__vendor">
+          Brand Name
+        </p>
+
+        <h3 class="product-card__title">
+          Classic Cotton Shirt
+        </h3>
+
+        <div class="product-card__price">
+          <span class="product-card__price--sale">
+            $49.00
+          </span>
+
+          <span class="product-card__price--compare">
+            $69.00
+          </span>
+        </div>
+
+        <button class="product-card__button">
+          Add to Cart
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- Product 2 -->
+    <div class="product-card">
+
+      <div class="product-card__image">
+
+        <img
+          src="https://placehold.co/600x700"
+          alt="Product Name"
+        >
+
+      </div>
+
+      <div class="product-card__content">
+
+        <p class="product-card__vendor">
+          Brand Name
+        </p>
+
+        <h3 class="product-card__title">
+          Premium Hoodie
+        </h3>
+
+        <div class="product-card__price">
+          <span class="product-card__price--sale">
+            $59.00
+          </span>
+        </div>
+
+        <button class="product-card__button">
+          Add to Cart
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- Product 3 -->
+    <div class="product-card">
+
+      <div class="product-card__image">
+
+        <img
+          src="https://placehold.co/600x700"
+          alt="Product Name"
+        >
+
+      </div>
+
+      <div class="product-card__content">
+
+        <p class="product-card__vendor">
+          Brand Name
+        </p>
+
+        <h3 class="product-card__title">
+          Casual Sneakers
+        </h3>
+
+        <div class="product-card__price">
+          <span class="product-card__price--sale">
+            $79.00
+          </span>
+        </div>
+
+        <button class="product-card__button">
+          Add to Cart
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- Product 4 -->
+    <div class="product-card">
+
+      <div class="product-card__image">
+
+        <img
+          src="https://placehold.co/600x700"
+          alt="Product Name"
+        >
+
+        <span class="product-card__badge">
+          New
+        </span>
+
+      </div>
+
+      <div class="product-card__content">
+
+        <p class="product-card__vendor">
+          Brand Name
+        </p>
+
+        <h3 class="product-card__title">
+          Leather Backpack
+        </h3>
+
+        <div class="product-card__price">
+          <span class="product-card__price--sale">
+            $89.00
+          </span>
+        </div>
+
+        <button class="product-card__button">
+          Add to Cart
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
