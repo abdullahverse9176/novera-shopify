@@ -18,12 +18,6 @@
       </div>
       {% render 'product-variant-picker', product: product %}
 
-      {% if product.description != blank %}
-        <div class="main-product__description">
-          {{ product.description }}
-        </div>
-      {% endif %}
-
       {% if product.available %}
         <form
           action="{{ routes.cart_add_url }}"
