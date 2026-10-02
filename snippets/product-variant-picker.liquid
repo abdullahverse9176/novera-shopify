@@ -1,0 +1,15 @@
+{% for option in product.options_with_values %}
+  <div class="product-option">
+    <label>
+      {{ option.name }}
+    </label>
+
+    <div class="option-values">
+      {% for value in option.values %}
+        <button type="button">
+          {{ value }}
+        </button>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}
