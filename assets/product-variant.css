@@ -3,7 +3,7 @@
     padding: 8px 15px;
     border: none;
     outline: none;
-
+    border-radius: 5px;
 }
 .option-values {
     margin-bottom: 15px;
