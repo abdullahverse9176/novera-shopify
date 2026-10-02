@@ -18,6 +18,8 @@
       </div>
       {% render 'product-variant-picker', product: product %}
 
+      
+
       {% if product.available %}
         <form
           action="{{ routes.cart_add_url }}"
