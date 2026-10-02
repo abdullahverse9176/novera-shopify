@@ -25,49 +25,43 @@
 
       {% if product.available %}
         <form
-  action="{{ routes.cart_add_url }}"
-  method="post"
-  class="product-form"
-  id="product-form"
->
+          action="{{ routes.cart_add_url }}"
+          method="post"
+          class="product-form"
+          id="product-form"
+        >
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.selected_or_first_available_variant.id }}"
+          >
 
-  <input
-    type="hidden"
-    name="id"
-    value="{{ product.selected_or_first_available_variant.id }}"
-  >
+          <div class="quantity-selector">
+            <button
+              type="button"
+              class="quantity-btn quantity-minus"
+            >
+              −
+            </button>
 
-  <div class="quantity-selector">
+            <input
+              type="number"
+              name="quantity"
+              value="1"
+              min="1"
+              class="quantity-input"
+            >
 
-    <button
-      type="button"
-      class="quantity-btn quantity-minus"
-    >
-      −
-    </button>
+            <button
+              type="button"
+              class="quantity-btn quantity-plus"
+            >
+              +
+            </button>
+          </div>
 
-    <input
-      type="number"
-      name="quantity"
-      value="1"
-      min="1"
-      class="quantity-input"
-    >
-
-    <button
-      type="button"
-      class="quantity-btn quantity-plus"
-    >
-      +
-    </button>
-
-  </div>
-
-  <button type="submit" class="add-to-cart">
-    Add to Cart
-  </button>
-
-</form>
+          <button type="submit" class="add-to-cart">Add to Cart</button>
+        </form>
 
       {% else %}
         <button
