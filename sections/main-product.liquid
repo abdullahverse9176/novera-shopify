@@ -72,6 +72,10 @@
   </div>
 </section>
 
+<div>
+  {% render 'product-information', product: product %}
+</div>
+
 {% render 'cart-drawer' %}
 {{ 'cart-drawer.js' | asset_url | script_tag }}
 
