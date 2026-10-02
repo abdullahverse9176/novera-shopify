@@ -1,6 +1,5 @@
-<sty>
 
-</style>
+{{ 'product-variant.css' | asset_url |  stylesheet_tag }}
 
 {% for option in product.options_with_values %}
   <div class="product-option">
