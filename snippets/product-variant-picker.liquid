@@ -1,18 +1,71 @@
+{% comment %}
+  Shopify OS 2.0 Product Variant Picker Snippet
+  Accepts:
+  - product: {Object} Product Liquid object
+  - block: {Object} Block Liquid object with settings
+  - product_form_id: {String} ID of the product form
+{% endcomment %}
 
-{{ 'product-variant.css' | asset_url |  stylesheet_tag }}
+{%- unless product.has_only_default_variant -%}
+  <variant-picker
+    class="product-variant-picker"
+    data-section="{{ section.id }}"
+    data-url="{{ product.url }}"
+  >
+    {%- for option in product.options_with_values -%}
+      {%- assign picker_type = block.settings.picker_type | default: 'button' -%}
 
-{% for option in product.options_with_values %}
-  <div class="product-option">
-    <label>
-      {{ option.name }}
-    </label>
+      <div class="product-option" data-option-index="{{ forloop.index0 }}">
+        <div class="product-option__header">
+          <label class="product-option__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+            <span class="option-name">{{ option.name }}:</span>
+            <span class="option-selected-value" data-header-option-val="{{ forloop.index0 }}">
+              {{ option.selected_value }}
+            </span>
+          </label>
+        </div>
 
-    <div class="option-values">
-      {% for value in option.values %}
-        <button type="button" class="color-badge">
-          {{ value }}
-        </button>
-      {% endfor %}
-    </div>
-  </div>
-{% endfor %}
+        {%- if picker_type == 'dropdown' -%}
+          <div class="product-option__select-wrapper">
+            <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="product-option__select"
+              name="options[{{ option.name | escape }}]"
+              data-option-position="{{ option.position }}"
+            >
+              {%- for value in option.values -%}
+                <option
+                  value="{{ value | escape }}"
+                  {% if option.selected_value == value %}selected="selected"{% endif %}
+                >
+                  {{ value }}
+                </option>
+              {%- endfor -%}
+            </select>
+            <span class="select-arrow">▼</span>
+          </div>
+        {%- else -%}
+          <div class="option-values" role="radiogroup" aria-label="{{ option.name }}">
+            {%- for value in option.values -%}
+              {%- assign input_id = 'Option-' | append: section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0 -%}
+              <div class="variant-pill-wrapper">
+                <input
+                  type="radio"
+                  id="{{ input_id }}"
+                  name="Option-{{ section.id }}-{{ option.position }}"
+                  value="{{ value | escape }}"
+                  class="variant-pill-input"
+                  data-option-position="{{ option.position }}"
+                  {% if option.selected_value == value %}checked="checked"{% endif %}
+                >
+                <label for="{{ input_id }}" class="variant-pill-label">
+                  {{ value }}
+                </label>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </variant-picker>
+{%- endunless -%}
