@@ -7,11 +7,12 @@
     <!-- Product Gallery / Image -->
     <div class="main-product__image" id="ProductMedia-{{ section.id }}">
       {% if product.featured_image != blank %}
+        {%- assign featured_image_id = 'ProductFeaturedImage-' | append: section.id -%}
         {{
           product.featured_image
           | image_url: width: 1000
           | image_tag:
-            id: 'ProductFeaturedImage-' | append: section.id,
+            id: featured_image_id,
             loading: 'eager',
             alt: product.title,
             class: 'main-product__main-img'
