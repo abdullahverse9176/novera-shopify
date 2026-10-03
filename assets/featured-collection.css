@@ -112,7 +112,7 @@
   font-size: 18px;
   font-weight: 500;
 }
-.product-card__title {
+.product-card__title a {
   color: #000;
   text-decoration: none;
 }
