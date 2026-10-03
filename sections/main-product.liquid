@@ -1,86 +1,290 @@
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
+{{ 'product-variant.css' | asset_url | stylesheet_tag }}
 
-<section class="main-product">
+<section class="main-product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}">
   <div class="main-product__container">
-    <div class="main-product__image">
+    
+    <!-- Product Gallery / Image -->
+    <div class="main-product__image" id="ProductMedia-{{ section.id }}">
       {% if product.featured_image != blank %}
-        {{ product.featured_image | image_url: width: 1000 | image_tag: loading: 'eager', alt: product.title }}
-      {% endif %}
-    </div>
-
-    <div class="main-product__content">
-      <h1 class="main-product__title">
-        {{ product.title }}
-      </h1>
-
-      <div class="main-product__price">
-        {{ product.price | money }}
-      </div>
-
-      {% render 'product-variant-picker', product: product %}
-
-      {% if product.available %}
-        <form
-          action="{{ routes.cart_add_url }}"
-          method="post"
-          class="product-form"
-          id="product-form"
-        >
-          <input
-            type="hidden"
-            name="id"
-            value="{{ product.selected_or_first_available_variant.id }}"
-          >
-
-          <div class="quantity-selector">
-            <button
-              type="button"
-              class="quantity-btn quantity-minus"
-            >
-              −
-            </button>
-
-            <input
-              type="number"
-              name="quantity"
-              value="1"
-              min="1"
-              class="quantity-input"
-            >
-
-            <button
-              type="button"
-              class="quantity-btn quantity-plus"
-            >
-              +
-            </button>
-          </div>
-
-          <button type="submit" class="add-to-cart">Add to Cart</button>
-        </form>
-
+        {{
+          product.featured_image
+          | image_url: width: 1000
+          | image_tag:
+            id: 'ProductFeaturedImage-' | append: section.id,
+            loading: 'eager',
+            alt: product.title,
+            class: 'main-product__main-img'
+        }}
       {% else %}
-        <button
-          type="button"
-          disabled
-        >
-          Sold Out
-        </button>
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}
     </div>
+
+    <!-- Product Content (Rendered via Shopify 2.0 Blocks) -->
+    <div class="main-product__content">
+      {%- assign product_form_id = 'product-form-' | append: section.id -%}
+      {%- assign current_variant = product.selected_or_first_available_variant -%}
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+
+          {%- when '@app' -%}
+            <div class="product__block product__block--app" {{ block.shopify_attributes }}>
+              {% render block %}
+            </div>
+
+          {%- when 'title' -%}
+            <div class="product__block product__block--title" {{ block.shopify_attributes }}>
+              <h1 class="main-product__title">
+                {{ product.title }}
+              </h1>
+            </div>
+
+          {%- when 'price' -%}
+            <div class="product__block product__block--price" id="Price-{{ section.id }}" {{ block.shopify_attributes }}>
+              <div class="main-product__price">
+                <span class="price-current" id="PriceCurrent-{{ section.id }}">
+                  {{ current_variant.price | money }}
+                </span>
+
+                <s
+                  class="price-compare"
+                  id="PriceCompare-{{ section.id }}"
+                  style="{% unless current_variant.compare_at_price > current_variant.price %}display: none;{% endunless %}"
+                >
+                  {{ current_variant.compare_at_price | money }}
+                </s>
+
+                <span
+                  class="badge-sale"
+                  id="SaleBadge-{{ section.id }}"
+                  style="{% unless current_variant.compare_at_price > current_variant.price %}display: none;{% endunless %}"
+                >
+                  Sale
+                </span>
+              </div>
+            </div>
+
+          {%- when 'variant_picker' -%}
+            <div class="product__block product__block--variant-picker" {{ block.shopify_attributes }}>
+              {% render 'product-variant-picker',
+                product: product,
+                block: block,
+                product_form_id: product_form_id
+              %}
+            </div>
+
+          {%- when 'quantity_selector' -%}
+            <div class="product__block product__block--quantity" {{ block.shopify_attributes }}>
+              <label class="quantity-label" for="Quantity-{{ section.id }}">Quantity</label>
+              <div class="quantity-selector">
+                <button
+                  type="button"
+                  class="quantity-btn quantity-minus"
+                  data-quantity-change="-1"
+                  aria-label="Decrease quantity"
+                >
+                  −
+                </button>
+                <input
+                  type="number"
+                  name="quantity"
+                  id="Quantity-{{ section.id }}"
+                  class="quantity-input"
+                  value="1"
+                  min="1"
+                  form="{{ product_form_id }}"
+                  aria-label="Quantity"
+                >
+                <button
+                  type="button"
+                  class="quantity-btn quantity-plus"
+                  data-quantity-change="1"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+          {%- when 'buy_buttons' -%}
+            <div class="product__block product__block--buy-buttons" {{ block.shopify_attributes }}>
+              {%- form 'product', product, id: product_form_id, class: 'product-form' -%}
+                <input
+                  type="hidden"
+                  name="id"
+                  id="SelectedVariantId-{{ section.id }}"
+                  value="{{ current_variant.id }}"
+                >
+
+                <button
+                  type="submit"
+                  name="add"
+                  class="add-to-cart"
+                  id="AddToCart-{{ section.id }}"
+                  {% unless current_variant.available %}disabled{% endunless %}
+                >
+                  <span id="AddToCartText-{{ section.id }}">
+                    {%- if current_variant.available -%}
+                      Add to Cart
+                    {%- else -%}
+                      Sold Out
+                    {%- endif -%}
+                  </span>
+                </button>
+
+                {%- if block.settings.show_dynamic_checkout -%}
+                  <div class="dynamic-checkout-buttons">
+                    {{ form | payment_button }}
+                  </div>
+                {%- endif -%}
+              {%- endform -%}
+            </div>
+
+          {%- when 'description' -%}
+            {%- if product.description != blank -%}
+              <div class="product__block product__block--description main-product__description" {{ block.shopify_attributes }}>
+                {{ product.description }}
+              </div>
+            {%- endif -%}
+
+          {%- when 'collapsible_tab' -%}
+            <div class="product__block product__block--collapsible" {{ block.shopify_attributes }}>
+              <details class="product-accordion">
+                <summary class="product-accordion__summary">
+                  <span class="product-accordion__title">{{ block.settings.heading | default: 'Details' }}</span>
+                  <span class="product-accordion__icon">+</span>
+                </summary>
+                <div class="product-accordion__content">
+                  {{ block.settings.content }}
+                  {%- if block.settings.page != blank -%}
+                    {{ block.settings.page.content }}
+                  {%- endif -%}
+                </div>
+              </details>
+            </div>
+
+          {%- when 'custom_liquid' -%}
+            <div class="product__block product__block--custom-liquid" {{ block.shopify_attributes }}>
+              {{ block.settings.custom_liquid }}
+            </div>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
   </div>
+
+  <!-- Variant JSON data for JavaScript logic -->
+  <script type="application/json" id="ProductVariants-{{ section.id }}">
+    {{ product.variants | json }}
+  </script>
 </section>
 
-<div>
-  {% render 'product-information', product: product %}
-</div>
-
 {% render 'cart-drawer' %}
-{{ 'cart-drawer.js' | asset_url | script_tag }}
+<script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-variant.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {
   "name": "Main Product",
+  "tag": "section",
+  "class": "section-main-product",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant Picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "label": "Variant Picker Style",
+          "options": [
+            {
+              "value": "button",
+              "label": "Pills / Swatches"
+            },
+            {
+              "value": "dropdown",
+              "label": "Dropdown"
+            }
+          ],
+          "default": "button"
+        }
+      ]
+    },
+    {
+      "type": "quantity_selector",
+      "name": "Quantity Selector",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dynamic_checkout",
+          "label": "Show dynamic checkout button",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1
+    },
+    {
+      "type": "collapsible_tab",
+      "name": "Collapsible Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Materials & Details"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Tab Content"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Tab content from page"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom Liquid"
+        }
+      ]
+    }
+  ],
   "settings": []
 }
 {% endschema %}
