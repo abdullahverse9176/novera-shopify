@@ -54,11 +54,12 @@
 
 .product-card__image {
   position: relative;
-  padding-top: 40%;
+  padding-top: 100%;
   display: block;
 }
 
 .product-card__image img {
+  position: absolute;
     top: 0;
     left:0;
     height: 100%;
