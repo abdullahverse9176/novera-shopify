@@ -54,12 +54,11 @@
 
 .product-card__image {
   position: relative;
-  padding-top: 145%;
+  padding-top: 40%;
   display: block;
 }
 
 .product-card__image img {
-  position: absolute;
     top: 0;
     left:0;
     height: 100%;
@@ -112,10 +111,6 @@
   font-size: 18px;
   font-weight: 500;
 }
-.product-card__title a {
-  color: #000;
-  text-decoration: none;
-}
 
 
 /* Price */
@@ -143,21 +138,22 @@
 /* Button */
 
 .product-card__button {
-  display: inline-block;
+  width: 100%;
   padding: 13px 20px;
+
   border: 1px solid #111;
   background: #111;
   color: #fff;
+
   font-size: 14px;
   cursor: pointer;
+
   transition: all 0.3s ease;
-  text-decoration: none;
 }
 
 .product-card__button:hover {
   background: #fff;
   color: #111;
-  text-decoration: none;
 }
 
 
