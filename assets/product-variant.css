@@ -1,10 +1,131 @@
-.color-badge {
-    background: #3cd5d742;
-    padding: 8px 15px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
+/* Product Variant Picker Styles */
+.product-variant-picker {
+  display: block;
+  margin-bottom: 25px;
 }
+
+.product-option {
+  margin-bottom: 20px;
+}
+
+.product-option:last-child {
+  margin-bottom: 0;
+}
+
+.product-option__header {
+  margin-bottom: 10px;
+}
+
+.product-option__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #222;
+}
+
+.option-selected-value {
+  font-weight: 400;
+  color: #666;
+  text-transform: none;
+}
+
+/* Radio Pills / Swatches */
 .option-values {
-    margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.variant-pill-wrapper {
+  position: relative;
+}
+
+.variant-pill-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.variant-pill-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  min-width: 44px;
+  min-height: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  background-color: #fff;
+  border: 1.5px solid #dcdcdc;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.variant-pill-label:hover {
+  border-color: #111;
+}
+
+/* Active / Checked State */
+.variant-pill-input:checked + .variant-pill-label {
+  background-color: #111;
+  color: #fff;
+  border-color: #111;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus state for keyboard accessibility */
+.variant-pill-input:focus-visible + .variant-pill-label {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
+
+/* Disabled / Unavailable variant */
+.variant-pill-input:disabled + .variant-pill-label {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* Dropdown Variant Picker Option */
+.product-option__select-wrapper {
+  position: relative;
+  max-width: 320px;
+}
+
+.product-option__select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1.5px solid #dcdcdc;
+  border-radius: 6px;
+  padding: 12px 36px 12px 14px;
+  font-size: 15px;
+  color: #111;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.product-option__select:focus {
+  border-color: #111;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #666;
+  pointer-events: none;
 }
