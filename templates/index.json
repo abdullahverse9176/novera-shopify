@@ -29,6 +29,7 @@
         "slide_abG4wU": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/0926_HPHero_AEDraped.avif",
             "subheading": "NEW COLLECTION",
             "heading": "Discover Something New",
             "text": "<p>Explore our latest collection.</p>",
