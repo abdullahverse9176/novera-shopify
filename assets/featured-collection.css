@@ -147,11 +147,13 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .product-card__button:hover {
   background: #fff;
   color: #111;
+  text-decoration: none;
 }
 
 
