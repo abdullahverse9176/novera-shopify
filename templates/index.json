@@ -11,6 +11,7 @@
   "sections": {
     "hero_banner": {
       "type": "hero-banner",
+      "disabled": true,
       "settings": {
         "hero_image": "shopify://shop_images/0926_HPHero_AEDraped.avif",
         "header_subtitle": "NEW COLLECTION",
@@ -20,6 +21,46 @@
         "hero_hero_primary_btn_url": "",
         "hero_hero_secondary_btn": "VIEW COLLECTION",
         "hero_hero_secondary_btn_url": ""
+      }
+    },
+    "slider_6tC8xA": {
+      "type": "slider",
+      "blocks": {
+        "slide_abG4wU": {
+          "type": "slide",
+          "settings": {
+            "subheading": "NEW COLLECTION",
+            "heading": "Discover Something New",
+            "text": "<p>Explore our latest collection.</p>",
+            "button_text": "Shop Now",
+            "button_link": "",
+            "content_position": "center"
+          }
+        },
+        "slide_UMLAEi": {
+          "type": "slide",
+          "settings": {
+            "subheading": "NEW COLLECTION",
+            "heading": "Discover Something New",
+            "text": "<p>Explore our latest collection.</p>",
+            "button_text": "Shop Now",
+            "button_link": "",
+            "content_position": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_abG4wU",
+        "slide_UMLAEi"
+      ],
+      "name": "Hero Slider",
+      "settings": {
+        "desktop_height": 600,
+        "mobile_height": 500,
+        "overlay_opacity": 30,
+        "autoplay_speed": 4000,
+        "show_arrows": true,
+        "show_dots": true
       }
     },
     "categories_cards_b4LV7d": {
@@ -172,58 +213,17 @@
         "collection": "all-products",
         "products_to_show": 4
       }
-    },
-    "slider_6tC8xA": {
-      "type": "slider",
-      "blocks": {
-        "slide_abG4wU": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/0926_HPHero_AEDraped.avif",
-            "subheading": "NEW COLLECTION",
-            "heading": "Discover Something New",
-            "text": "<p>Explore our latest collection.</p>",
-            "button_text": "Shop Now",
-            "button_link": "",
-            "content_position": "center"
-          }
-        },
-        "slide_UMLAEi": {
-          "type": "slide",
-          "settings": {
-            "subheading": "NEW COLLECTION",
-            "heading": "Discover Something New",
-            "text": "<p>Explore our latest collection.</p>",
-            "button_text": "Shop Now",
-            "button_link": "",
-            "content_position": "center"
-          }
-        }
-      },
-      "block_order": [
-        "slide_abG4wU",
-        "slide_UMLAEi"
-      ],
-      "name": "Hero Slider",
-      "settings": {
-        "desktop_height": 600,
-        "mobile_height": 500,
-        "overlay_opacity": 30,
-        "autoplay_speed": 4000,
-        "show_arrows": true,
-        "show_dots": true
-      }
     }
   },
   "order": [
     "hero_banner",
+    "slider_6tC8xA",
     "categories_cards_b4LV7d",
     "video_banner_fHFkbc",
     "our_story_3aTPan",
     "faq_section_FamQ6E",
     "brand_section_aBkMeh",
     "costomizable_banner_GLHNqn",
-    "featured_collection_H6jEnj",
-    "slider_6tC8xA"
+    "featured_collection_H6jEnj"
   ]
 }
