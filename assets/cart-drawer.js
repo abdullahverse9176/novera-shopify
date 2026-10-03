@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.addEventListener("submit", async function (event) {
 
-    const form = event.target.closest("#product-form");
+    const form = event.target.closest("#product-form, .product-form");
 
     if (!form) return;
 
@@ -39,6 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     const formData = new FormData(form);
+    const qtyInput = form.querySelector('[name="quantity"]') || document.querySelector(`[name="quantity"][form="${form.id}"]`) || document.querySelector('.quantity-input');
+    if (qtyInput && !formData.get('quantity')) {
+      formData.set('quantity', qtyInput.value || 1);
+    }
 
 
     try {
