@@ -372,7 +372,7 @@
 .search-wrapper {
   width: 100%;
   display: flex;
-  padding: 50px;
+  padding: 50px 30px 30px 30px;
 }
 
 .search-box {
