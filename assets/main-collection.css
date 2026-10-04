@@ -1,4 +1,8 @@
 
+root: {
+  --grid-count : {{section.settings.grid_count}}
+}
+
 .main-collection {
   padding: 60px 20px;
 }
