@@ -389,7 +389,10 @@
   border-radius: 6px;
   cursor: pointer;
 }
-
+.search-wrapper{
+  max-width: 550px;
+  margin: 0 auto;
+}
 /* ========================================
    Mobile
 ======================================== */
