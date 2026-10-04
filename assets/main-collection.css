@@ -374,7 +374,10 @@
   display: flex;
   padding-top: 50px;
 }
-
+.search-box {
+  max-width: 500px;
+  width: 100%;
+}
 #CollectionSearch {
   width: 100%;
   height: 48px;
