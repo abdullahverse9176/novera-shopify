@@ -268,72 +268,58 @@
 
           <!-- LOAD MORE -->
 
-          {% if section.settings.pagination_or_load_more == 'show_pagination' %}
+          {% if paginate.next %}
+            <div class="load-more-wrapper">
+              <button
+                type="button"
+                id="LoadMore"
+                class="load-more-btn"
+                data-next-url="{{ paginate.next.url }}"
+              >
+                Load More
+              </button>
+            </div>
+          {% endif %}
 
-  <!-- PAGINATION -->
+          <!-- PAGINATION -->
 
-  {% if paginate.pages > 1 %}
+          {% if paginate.pages > 1 %}
+            <div class="collection-pagination">
+              {% if paginate.previous %}
+                <a
+                  href="{{ paginate.previous.url }}"
+                  class="pagination-btn"
+                >
+                  Previous
+                </a>
+              {% endif %}
 
-    <div class="collection-pagination">
+              {% for part in paginate.parts %}
+                {% if part.is_link %}
+                  <a
+                    href="{{ part.url }}"
+                    class="pagination-btn"
+                  >
+                    {{ part.title }}
+                  </a>
 
-      {% if paginate.previous %}
-        <a href="{{ paginate.previous.url }}" class="pagination-btn">
-          Previous
-        </a>
-      {% endif %}
+                {% else %}
+                  <span class="pagination-btn pagination-active">
+                    {{ part.title }}
+                  </span>
+                {% endif %}
+              {% endfor %}
 
-      {% for part in paginate.parts %}
-
-        {% if part.is_link %}
-
-          <a href="{{ part.url }}" class="pagination-btn">
-            {{ part.title }}
-          </a>
-
-        {% else %}
-
-          <span class="pagination-btn pagination-active">
-            {{ part.title }}
-          </span>
-
-        {% endif %}
-
-      {% endfor %}
-
-      {% if paginate.next %}
-        <a href="{{ paginate.next.url }}" class="pagination-btn">
-          Next
-        </a>
-      {% endif %}
-
-    </div>
-
-  {% endif %}
-
-
-{% elsif section.settings.pagination_or_load_more == 'show_load_more' %}
-
-  <!-- LOAD MORE -->
-
-  {% if paginate.next %}
-
-    <div class="load-more-wrapper">
-
-      <button
-        type="button"
-        id="LoadMore"
-        class="load-more-btn"
-        data-next-url="{{ paginate.next.url }}"
-      >
-        Load More
-      </button>
-
-    </div>
-
-  {% endif %}
-
-{% endif %}
-
+              {% if paginate.next %}
+                <a
+                  href="{{ paginate.next.url }}"
+                  class="pagination-btn"
+                >
+                  Next
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
           
         {% endpaginate %}
 
