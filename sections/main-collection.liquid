@@ -299,32 +299,29 @@
 
 <script>
 
-  document.addEventListener('DOMContentLoaded', function () {
-
+document.addEventListener('DOMContentLoaded', function () {
   const searchInput = document.querySelector('#CollectionSearch');
   const products = document.querySelectorAll('#CollectionProducts .product-card');
 
   if (!searchInput) return;
 
   searchInput.addEventListener('input', function () {
-
     const searchTerm = this.value.toLowerCase().trim();
 
     products.forEach(function (product) {
+      const titleElement = product.querySelector('.product-card__title');
 
-      const productTitle =
-        product.querySelector('h3')?.textContent.toLowerCase() || '';
+      if (!titleElement) return;
+
+      const productTitle = titleElement.textContent.toLowerCase().trim();
 
       if (productTitle.includes(searchTerm)) {
         product.style.display = '';
       } else {
         product.style.display = 'none';
       }
-
     });
-
   });
-
 });
 
 </script>
