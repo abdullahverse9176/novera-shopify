@@ -268,6 +268,8 @@
 
           <!-- LOAD MORE -->
 
+          {% comment %} {% if section.settings.pagination_or_load_more = 'pagination_or_load_more' %} {% endcomment %}
+
           {% if paginate.next %}
             <div class="load-more-wrapper">
               <button
@@ -280,6 +282,7 @@
               </button>
             </div>
           {% endif %}
+          
 
           <!-- PAGINATION -->
 
