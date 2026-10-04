@@ -228,99 +228,99 @@
 
       {% if collection.products_count > 0 %}
         {% paginate collection.products by 5 %}
+          <div class="collection-grid" id="CollectionProducts">
+            {% for product in collection.products %}
+              <article class="product-card">
+                <div class="product-card__image">
+                  <a href="{{ product.url }}">
+                    {% if product.featured_image != blank %}
+                      {{
+                        product.featured_image
+                        | image_url: width: 600
+                        | image_tag: loading: 'lazy', alt: product.title
+                      }}
+                    {% else %}
+                      {{ 'product-1' | placeholder_svg_tag }}
+                    {% endif %}
+                  </a>
+                </div>
 
-  <div class="collection-grid" id="CollectionProducts">
+                <div class="product-card__content">
+                  <h2 class="product-card__title">
+                    <a href="{{ product.url }}">
+                      {{ product.title }}
+                    </a>
+                  </h2>
 
-    {% for product in collection.products %}
+                  <div class="product-card__price">
+                    {{ product.price | money }}
+                  </div>
 
-      <article class="product-card">
-
-        <div class="product-card__image">
-          <a href="{{ product.url }}">
-            {% if product.featured_image != blank %}
-              {{
-                product.featured_image
-                | image_url: width: 600
-                | image_tag: loading: 'lazy', alt: product.title
-              }}
-            {% else %}
-              {{ 'product-1' | placeholder_svg_tag }}
-            {% endif %}
-          </a>
-        </div>
-
-        <div class="product-card__content">
-
-          <h2 class="product-card__title">
-            <a href="{{ product.url }}">
-              {{ product.title }}
-            </a>
-          </h2>
-
-          <div class="product-card__price">
-            {{ product.price | money }}
+                  {% if product.available %}
+                    <span class="product-card__availability"> Available </span>
+                  {% else %}
+                    <span class="product-card__availability product-card__availability--sold"> Sold Out </span>
+                  {% endif %}
+                </div>
+              </article>
+            {% endfor %}
           </div>
 
-          {% if product.available %}
-            <span class="product-card__availability">
-              Available
-            </span>
-          {% else %}
-            <span class="product-card__availability product-card__availability--sold">
-              Sold Out
-            </span>
+          <!-- LOAD MORE -->
+
+          {% if paginate.next %}
+            <div class="load-more-wrapper">
+              <button
+                type="button"
+                id="LoadMore"
+                class="load-more-btn"
+                data-next-url="{{ paginate.next.url }}"
+              >
+                Load More
+              </button>
+            </div>
           {% endif %}
 
-        </div>
+          <!-- PAGINATION -->
 
-      </article>
+          {% if paginate.pages > 1 %}
+            <div class="collection-pagination">
+              {% if paginate.previous %}
+                <a
+                  href="{{ paginate.previous.url }}"
+                  class="pagination-btn"
+                >
+                  Previous
+                </a>
+              {% endif %}
 
-    {% endfor %}
+              {% for part in paginate.parts %}
+                {% if part.is_link %}
+                  <a
+                    href="{{ part.url }}"
+                    class="pagination-btn"
+                  >
+                    {{ part.title }}
+                  </a>
 
-  </div>
+                {% else %}
+                  <span class="pagination-btn pagination-active">
+                    {{ part.title }}
+                  </span>
+                {% endif %}
+              {% endfor %}
 
-
-  {% if paginate.pages > 1 %}
-
-    <div class="collection-pagination">
-
-      {% if paginate.previous %}
-        <a href="{{ paginate.previous.url }}" class="pagination-btn">
-          Previous
-        </a>
-      {% endif %}
-
-
-      {% for part in paginate.parts %}
-
-        {% if part.is_link %}
-
-          <a href="{{ part.url }}" class="pagination-btn">
-            {{ part.title }}
-          </a>
-
-        {% else %}
-
-          <span class="pagination-btn pagination-active">
-            {{ part.title }}
-          </span>
-
-        {% endif %}
-
-      {% endfor %}
-
-
-      {% if paginate.next %}
-        <a href="{{ paginate.next.url }}" class="pagination-btn">
-          Next
-        </a>
-      {% endif %}
-
-    </div>
-
-  {% endif %}
-
-{% endpaginate %}
+              {% if paginate.next %}
+                <a
+                  href="{{ paginate.next.url }}"
+                  class="pagination-btn"
+                >
+                  Next
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endpaginate %}
 
       {% else %}
         <!-- NO PRODUCTS -->
