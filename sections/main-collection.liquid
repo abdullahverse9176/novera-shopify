@@ -1,5 +1,11 @@
 {{ 'main-collection.css' | asset_url | stylesheet_tag }}
 
+<style>
+  .collection-grid {
+    --grid-count: {{ section.settings.grid_count }};
+  }
+</style>
+
 <div class="collection-toolbar">
   <button
     type="button"
@@ -228,7 +234,7 @@
 
       {% if collection.products_count > 0 %}
         {% paginate collection.products by 5 %}
-          <div class="collection-grid" id="CollectionProducts">
+          <div class="collection-grid" style="" id="CollectionProducts">
             {% for product in collection.products %}
               <article class="product-card">
                 <div class="product-card__image">
