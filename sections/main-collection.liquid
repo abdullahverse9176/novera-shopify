@@ -296,66 +296,60 @@
 }
 {% endschema %}
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" defer="defer"></script>
+
 <script>
-  ```javascript
-$(document).ready(function () {
+  $(document).ready(function () {
+    const $searchInput = $('#CollectionSearch');
+    const $productGrid = $('#CollectionProducts');
 
-  const $searchInput = $('#CollectionSearch');
-  const $productGrid = $('#CollectionProducts');
+    if (!$searchInput.length || !$productGrid.length) {
+      return;
+    }
 
-  if (!$searchInput.length || !$productGrid.length) {
-    return;
-  }
+    let searchTimeout;
 
-  let searchTimeout;
+    $searchInput.on('input', function () {
+      clearTimeout(searchTimeout);
 
-  $searchInput.on('input', function () {
+      const query = $.trim($(this).val());
 
-    clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(function () {
+        // Search empty hai
+        if (!query) {
+          window.location.reload();
+          return;
+        }
 
-    const query = $.trim($(this).val());
+        const url =
+          window.Shopify.routes.root +
+          'search/suggest.json?q=' +
+          encodeURIComponent(query) +
+          '&resources[type]=product&resources[limit]=250';
 
-    searchTimeout = setTimeout(function () {
+        $.ajax({
+          url: url,
+          method: 'GET',
+          dataType: 'json',
 
-      // Search empty hai
-      if (!query) {
-        window.location.reload();
-        return;
-      }
+          success: function (data) {
+            const products = data.resources.results.products || [];
 
-      const url =
-        window.Shopify.routes.root +
-        'search/suggest.json?q=' +
-        encodeURIComponent(query) +
-        '&resources[type]=product&resources[limit]=250';
+            $productGrid.empty();
 
-      $.ajax({
-        url: url,
-        method: 'GET',
-        dataType: 'json',
-
-        success: function (data) {
-
-          const products =
-            data.resources.results.products || [];
-
-          $productGrid.empty();
-
-          if (!products.length) {
-
-            $productGrid.html(`
+            if (!products.length) {
+              $productGrid.html(`
               <div class="search-no-results">
                 No products found.
               </div>
             `);
 
-            return;
-          }
+              return;
+            }
 
-          $.each(products, function (index, product) {
-
-            const imageHTML = product.image
-              ? `
+            $.each(products, function (index, product) {
+              const imageHTML = product.image
+                ? `
                 <a href="${product.url}">
                   <img
                     src="${product.image}"
@@ -363,7 +357,7 @@ $(document).ready(function () {
                   >
                 </a>
               `
-              : `
+                : `
                 <a href="${product.url}">
                   <div class="product-placeholder">
                     No Image
@@ -371,7 +365,7 @@ $(document).ready(function () {
                 </a>
               `;
 
-            const productHTML = `
+              const productHTML = `
               <article class="product-card">
 
                 <div class="product-card__image">
@@ -395,26 +389,15 @@ $(document).ready(function () {
               </article>
             `;
 
-            $productGrid.append(productHTML);
+              $productGrid.append(productHTML);
+            });
+          },
 
-          });
-        },
-
-        error: function (xhr, status, error) {
-
-          console.error(
-            'Search error:',
-            error
-          );
-
-        }
-      });
-
-    }, 300);
-
+          error: function (xhr, status, error) {
+            console.error('Search error:', error);
+          },
+        });
+      }, 300);
+    });
   });
-
-});
-```
-
 </script>
