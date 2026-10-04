@@ -266,21 +266,6 @@
             {% endfor %}
           </div>
 
-          <!-- LOAD MORE -->
-
-          {% if paginate.next %}
-            <div class="load-more-wrapper">
-              <button
-                type="button"
-                id="LoadMore"
-                class="load-more-btn"
-                data-next-url="{{ paginate.next.url }}"
-              >
-                Load More
-              </button>
-            </div>
-          {% endif %}
-
           <!-- PAGINATION -->
 
           {% if section.settings.pagination_or_load_more == 'show_pagination' %}
