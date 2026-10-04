@@ -11,7 +11,11 @@
   "sections": {
     "main": {
       "type": "main-collection",
-      "settings": {}
+      "settings": {
+        "grid_count": "4",
+        "search_alignment": "center",
+        "pagination_or_load_more": "show_pagination"
+      }
     }
   },
   "order": [
