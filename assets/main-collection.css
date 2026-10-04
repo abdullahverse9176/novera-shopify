@@ -373,6 +373,7 @@
   width: 100%;
   max-width: 500px;
   margin: 0 auto 30px;
+  padding-top: 50px;
 }
 
 #CollectionSearch {
