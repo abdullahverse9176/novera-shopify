@@ -372,6 +372,7 @@
 .search-wrapper {
   width: 100%;
   max-width: 500px;
+  display: flex;
   margin: 0 auto 0;
   padding-top: 50px;
 }
