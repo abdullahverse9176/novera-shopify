@@ -402,7 +402,36 @@
 #CollectionSearch::-webkit-search-cancel-button {
   cursor: pointer;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 40px;
+}
 
+.pagination a,
+.pagination__current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.pagination a {
+  color: #222;
+}
+
+.pagination__current {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
 /* ========================================
    Mobile
 ======================================== */
