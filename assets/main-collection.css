@@ -402,32 +402,41 @@
 #CollectionSearch::-webkit-search-cancel-button {
   cursor: pointer;
 }
-.pagination {
+.collection-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   margin-top: 40px;
+  margin-bottom: 40px;
 }
 
-.pagination a,
-.pagination__current {
+.pagination-btn {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 14px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 40px;
-  height: 40px;
-  padding: 0 12px;
+
   border: 1px solid #ddd;
   border-radius: 6px;
-  text-decoration: none;
-}
 
-.pagination a {
   color: #222;
+  text-decoration: none;
+  background: #fff;
+
+  transition: all 0.2s ease;
 }
 
-.pagination__current {
+.pagination-btn:hover {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
+
+.pagination-active {
   background: #222;
   color: #fff;
   border-color: #222;
