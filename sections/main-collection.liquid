@@ -295,3 +295,36 @@
   "settings": []
 }
 {% endschema %}
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+  const searchInput = document.querySelector('#CollectionSearch');
+  const products = document.querySelectorAll('#CollectionProducts .product-card');
+
+  if (!searchInput) return;
+
+  searchInput.addEventListener('input', function () {
+
+    const searchTerm = this.value.toLowerCase().trim();
+
+    products.forEach(function (product) {
+
+      const productTitle =
+        product.querySelector('h3')?.textContent.toLowerCase() || '';
+
+      if (productTitle.includes(searchTerm)) {
+        product.style.display = '';
+      } else {
+        product.style.display = 'none';
+      }
+
+    });
+
+  });
+
+});
+
+</script>
