@@ -297,86 +297,124 @@
 {% endschema %}
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.querySelector('#CollectionSearch');
-    const productGrid = document.querySelector('#CollectionProducts');
+  ```javascript
+$(document).ready(function () {
 
-    if (!searchInput || !productGrid) return;
+  const $searchInput = $('#CollectionSearch');
+  const $productGrid = $('#CollectionProducts');
 
-    let searchTimeout;
+  if (!$searchInput.length || !$productGrid.length) {
+    return;
+  }
 
-    searchInput.addEventListener('input', function () {
-      clearTimeout(searchTimeout);
+  let searchTimeout;
 
-      const query = this.value.trim();
+  $searchInput.on('input', function () {
 
-      searchTimeout = setTimeout(async function () {
-        // Search empty hai to original collection products show karo
-        if (!query) {
-          window.location.reload();
-          return;
-        }
+    clearTimeout(searchTimeout);
 
-        try {
-          const url = `${window.Shopify.routes.root}search/suggest.json?q=${encodeURIComponent(
-            query
-          )}&resources[type]=product&resources[limit]=250`;
+    const query = $.trim($(this).val());
 
-          const response = await fetch(url);
+    searchTimeout = setTimeout(function () {
 
-          if (!response.ok) {
-            throw new Error('Search request failed');
-          }
+      // Search empty hai
+      if (!query) {
+        window.location.reload();
+        return;
+      }
 
-          const data = await response.json();
+      const url =
+        window.Shopify.routes.root +
+        'search/suggest.json?q=' +
+        encodeURIComponent(query) +
+        '&resources[type]=product&resources[limit]=250';
 
-          const products = data.resources.results.products || [];
+      $.ajax({
+        url: url,
+        method: 'GET',
+        dataType: 'json',
 
-          productGrid.innerHTML = '';
+        success: function (data) {
 
-          if (products.length === 0) {
-            productGrid.innerHTML = `
-            <div class="search-no-results">
-              No products found.
-            </div>
-          `;
+          const products =
+            data.resources.results.products || [];
+
+          $productGrid.empty();
+
+          if (!products.length) {
+
+            $productGrid.html(`
+              <div class="search-no-results">
+                No products found.
+              </div>
+            `);
 
             return;
           }
 
-          products.forEach(function (product) {
-            const productHTML = `
-            <article class="product-card">
+          $.each(products, function (index, product) {
 
-              <div class="product-card__image">
+            const imageHTML = product.image
+              ? `
                 <a href="${product.url}">
-                  ${product.image ? `<img src="${product.image}" alt="${product.title}">` : ''}
+                  <img
+                    src="${product.image}"
+                    alt="${product.title}"
+                  >
                 </a>
-              </div>
+              `
+              : `
+                <a href="${product.url}">
+                  <div class="product-placeholder">
+                    No Image
+                  </div>
+                </a>
+              `;
 
-              <div class="product-card__content">
+            const productHTML = `
+              <article class="product-card">
 
-                <h2 class="product-card__title">
-                  <a href="${product.url}">
-                    ${product.title}
-                  </a>
-                </h2>
-
-                <div class="product-card__price">
-                  ${product.price}
+                <div class="product-card__image">
+                  ${imageHTML}
                 </div>
 
-              </div>
+                <div class="product-card__content">
 
-            </article>
-          `;
+                  <h2 class="product-card__title">
+                    <a href="${product.url}">
+                      ${product.title}
+                    </a>
+                  </h2>
 
-            productGrid.insertAdjacentHTML('beforeend', productHTML);
+                  <div class="product-card__price">
+                    ${product.price}
+                  </div>
+
+                </div>
+
+              </article>
+            `;
+
+            $productGrid.append(productHTML);
+
           });
-        } catch (error) {
-          console.error('Search error:', error);
+        },
+
+        error: function (xhr, status, error) {
+
+          console.error(
+            'Search error:',
+            error
+          );
+
         }
-      }, 300);
-    });
+      });
+
+    }, 300);
+
   });
+
+});
+```
+
 </script>
