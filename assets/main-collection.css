@@ -369,31 +369,39 @@
   border-color: #111;
 }
 
-.collection-search {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
-.collection-search input[type="search"] {
+.search-wrapper {
   width: 100%;
-  max-width: 400px;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  max-width: 500px;
+  margin: 0 auto 30px;
 }
 
-.collection-search button {
-  padding: 12px 25px;
-  border: 0;
-  border-radius: 6px;
+#CollectionSearch {
+  width: 100%;
+  height: 48px;
+  padding: 0 18px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+#CollectionSearch::placeholder {
+  color: #999;
+}
+
+#CollectionSearch:focus {
+  border-color: #222;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+#CollectionSearch::-webkit-search-cancel-button {
   cursor: pointer;
 }
-.search-wrapper{
-  max-width: 550px;
-  margin: 0 auto;
-  padding-top: 50px;
-}
+
 /* ========================================
    Mobile
 ======================================== */
