@@ -372,7 +372,7 @@
 .search-wrapper {
   width: 100%;
   max-width: 500px;
-  margin: 0 auto 30px;
+  margin: 0 auto 0;
   padding-top: 50px;
 }
 
