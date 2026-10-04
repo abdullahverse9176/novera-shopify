@@ -402,13 +402,40 @@
 #CollectionSearch::-webkit-search-cancel-button {
   cursor: pointer;
 }
+.load-more-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.load-more-btn {
+  padding: 14px 30px;
+  border: none;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.load-more-btn:hover {
+  background: #444;
+}
+
+.load-more-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* PAGINATION */
+
 .collection-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 30px 0 50px;
 }
 
 .pagination-btn {
@@ -424,10 +451,10 @@
   border-radius: 6px;
 
   color: #222;
-  text-decoration: none;
   background: #fff;
+  text-decoration: none;
 
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .pagination-btn:hover {
