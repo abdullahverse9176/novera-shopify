@@ -16,10 +16,21 @@
     ==================================
   -->
 
+  <form action="{{ routes.search_url }}" method="get" class="collection-search">
+    <input
+      type="search"
+      name="q"
+      placeholder="Search products..."
+      value="{{ search.terms | escape }}"
+    >
+
+    <input type="hidden" name="type" value="product">
+
+    <button type="submit">Search</button>
+  </form>
+
   <aside class="collection-filters">
-    <h2 class="collection-title">
-      Filters
-    </h2>
+    <h2 class="collection-title">Filters</h2>
 
     <form method="get">
       {% for filter in collection.filters %}
