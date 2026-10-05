@@ -727,162 +727,392 @@ p {
 
 }
 
-.search-modal-wrapper {
-  position: relative;
-}
+/* =========================================
+   HEADER SEARCH BUTTON
+========================================= */
 
-/* Open button */
-
-.open-search-modal {
-  padding: 12px 22px;
-  border: 0;
-  border-radius: 6px;
-  background: #111;
-  color: #fff;
+.site-header__action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: #111;
+  text-decoration: none;
   cursor: pointer;
-  font-size: 15px;
 }
 
-/* Modal */
+.site-header__action-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+
+/* =========================================
+   SEARCH MODAL
+========================================= */
 
 .search-modal {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 99999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 20px 20px;
 }
+
+.search-modal[hidden] {
+  display: none;
+}
+
+
+/* =========================================
+   OVERLAY
+========================================= */
 
 .search-modal__overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.55);
-}
-
-.search-modal__content {
-  position: relative;
-  width: 90%;
-  max-width: 700px;
-  max-height: 85vh;
-  margin: 60px auto 0;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-}
-
-/* Close */
-
-.search-modal__close {
-  position: absolute;
-  top: 15px;
-  right: 18px;
-  width: 35px;
-  height: 35px;
-  border: 0;
-  background: transparent;
-  font-size: 28px;
-  line-height: 1;
+  backdrop-filter: blur(3px);
   cursor: pointer;
 }
 
-/* Header */
+
+/* =========================================
+   MODAL DIALOG
+========================================= */
+
+.search-modal__dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 760px;
+  max-height: calc(100vh - 100px);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
 
 .search-modal__header {
-  padding: 30px;
-  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 28px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.search-modal__header h2 {
-  margin: 0 0 20px;
+.search-modal__title {
+  margin: 0;
   font-size: 24px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #111;
 }
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.search-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f3f3f3;
+  color: #111;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-modal__close:hover {
+  background: #111;
+  color: #fff;
+}
+
+
+/* =========================================
+   MODAL BODY
+========================================= */
+
+.search-modal__body {
+  padding: 28px;
+}
+
+
+/* =========================================
+   SEARCH FORM
+========================================= */
 
 .search-modal__form {
   display: flex;
+  align-items: stretch;
   gap: 10px;
+  width: 100%;
 }
 
-.search-modal__input {
+
+/* =========================================
+   INPUT WRAPPER
+========================================= */
+
+.search-modal__input-wrapper {
+  position: relative;
   flex: 1;
-  padding: 13px 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+}
+
+
+/* =========================================
+   SEARCH ICON
+========================================= */
+
+.search-modal__icon {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+}
+
+.search-modal__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/* =========================================
+   SEARCH INPUT
+========================================= */
+
+.search-modal__input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  padding: 0 16px 0 48px;
+  border: 1px solid #d5d5d5;
+  border-radius: 7px;
   outline: none;
+  background: #fff;
+  color: #111;
   font-size: 16px;
+}
+
+.search-modal__input::placeholder {
+  color: #999;
 }
 
 .search-modal__input:focus {
   border-color: #111;
 }
 
-.search-modal__button {
-  padding: 13px 20px;
+
+/* =========================================
+   SEARCH BUTTON
+========================================= */
+
+.search-modal__submit {
+  height: 50px;
+  padding: 0 24px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 7px;
   background: #111;
   color: #fff;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-/* Results */
+.search-modal__submit:hover {
+  opacity: 0.8;
+}
+
+
+/* =========================================
+   RESULTS
+========================================= */
 
 .search-modal__results {
-  max-height: 55vh;
+  margin-top: 24px;
+  max-height: 450px;
   overflow-y: auto;
 }
 
-.search-modal__results-inner {
-  padding: 15px 30px 30px;
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.search-modal__empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #777;
 }
 
-/* Product */
+.search-modal__empty p {
+  margin: 0;
+  font-size: 15px;
+}
+
+
+/* =========================================
+   PRODUCT RESULT
+========================================= */
 
 .search-product {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 12px 0;
+  gap: 16px;
+  padding: 14px 0;
   border-bottom: 1px solid #eee;
-  text-decoration: none;
   color: #111;
+  text-decoration: none;
+}
+
+.search-product:last-child {
+  border-bottom: 0;
 }
 
 .search-product:hover {
   background: #f8f8f8;
 }
 
+
+/* Product Image */
+
 .search-product__image {
   width: 70px;
   height: 70px;
+  flex-shrink: 0;
+  border-radius: 7px;
   object-fit: cover;
-  border-radius: 6px;
 }
+
+
+/* Product Information */
 
 .search-product__info {
   flex: 1;
+  min-width: 0;
 }
 
 .search-product__title {
   margin: 0 0 6px;
   font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #111;
 }
 
 .search-product__price {
   margin: 0;
-  color: #666;
   font-size: 14px;
+  color: #666;
 }
 
+
+/* Compare At Price */
+
 .search-product__compare-price {
-  margin-left: 6px;
+  margin-left: 7px;
   color: #999;
   text-decoration: line-through;
 }
 
+
+/* =========================================
+   NO RESULTS
+========================================= */
+
 .search-no-results {
-  padding: 30px 0;
+  padding: 40px 20px;
+  text-align: center;
+  color: #777;
+}
+
+.search-no-results p {
+  margin: 0;
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.search-loading {
+  padding: 40px 20px;
   text-align: center;
   color: #666;
 }
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media screen and (max-width: 749px) {
+
+  .search-modal {
+    align-items: flex-start;
+    padding: 20px 12px;
+  }
+
+  .search-modal__dialog {
+    max-height: calc(100vh - 40px);
+    border-radius: 10px;
+  }
+
+  .search-modal__header {
+    padding: 18px 20px;
+  }
+
+  .search-modal__title {
+    font-size: 20px;
+  }
+
+  .search-modal__body {
+    padding: 20px;
+  }
+
+  .search-modal__form {
+    flex-direction: column;
+  }
+
+  .search-modal__submit {
+    width: 100%;
+  }
+
+  .search-modal__results {
+    max-height: 55vh;
+  }
+
+  .search-product__image {
+    width: 55px;
+    height: 55px;
+  }
+
+}
+
 /* 1599px Max-Width */
 @media screen and (max-width: 1599px) {
   .hero-section__glow {
