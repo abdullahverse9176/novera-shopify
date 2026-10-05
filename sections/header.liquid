@@ -6,7 +6,9 @@
 {% if section.settings.show_announcement %}
   <aside class="announcement-bar" role="region" aria-label="Announcement">
     <div class="container">
-      <span>{{ section.settings.announcement_text | default: 'Free worldwide express shipping on all orders over $75!' }}</span>
+      <span>
+        {{- section.settings.announcement_text | default: 'Free worldwide express shipping on all orders over $75!' -}}
+      </span>
       {% if section.settings.announcement_link != blank %}
         <a
           href="{{ section.settings.announcement_link }}"
@@ -70,41 +72,35 @@
         </a>
 
         <div class="search-modal" id="searchModal" hidden>
+          <div class="search-modal__overlay"></div>
 
-  <div class="search-modal__overlay"></div>
+          <div class="search-modal__content">
+            <button
+              type="button"
+              class="search-modal__close"
+              id="searchModalClose"
+            >
+              &times;
+            </button>
 
-  <div class="search-modal__content">
+            <h2>Search Products</h2>
 
-    <button
-      type="button"
-      class="search-modal__close"
-      id="searchModalClose"
-    >
-      &times;
-    </button>
+            <form class="search-modal__form">
+              <input
+                type="search"
+                id="searchInput"
+                placeholder="Search products..."
+                autocomplete="off"
+              >
 
-    <h2>Search Products</h2>
+              <button type="submit">Search</button>
+            </form>
 
-    <form class="search-modal__form">
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="Search products..."
-        autocomplete="off"
-      >
-
-      <button type="submit">
-        Search
-      </button>
-    </form>
-
-    <div id="searchResults">
-      <!-- Products AJAX se yahan ayenge -->
-    </div>
-
-  </div>
-
-</div>
+            <div id="searchResults">
+              <!-- Products AJAX se yahan ayenge -->
+            </div>
+          </div>
+        </div>
 
         <a
           href="{% if routes.cart_url %}{{ routes.cart_url }}{% else %}javascript:void(0){% endif %}"
@@ -218,3 +214,26 @@
   ]
 }
 {% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.querySelector('#header_search');
+    const searchModal = document.querySelector('#searchModal');
+    const closeButton = document.querySelector('#searchModalClose');
+    const overlay = document.querySelector('.search-modal__overlay');
+
+    searchButton.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      searchModal.hidden = false;
+    });
+
+    closeButton.addEventListener('click', () => {
+      searchModal.hidden = true;
+    });
+
+    overlay.addEventListener('click', () => {
+      searchModal.hidden = true;
+    });
+  });
+</script>
