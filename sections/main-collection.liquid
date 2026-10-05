@@ -34,7 +34,7 @@
   <aside class="collection-filters">
     <h2 class="collection-title">Filters</h2>
 
-    <form method="get">
+    <form method="get" action="{{ collection.url }}">
       {% for filter in collection.filters %}
         <div class="filter-group">
           <h3 class="filter-title">
