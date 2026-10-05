@@ -34,7 +34,6 @@
           aria-label="{{ shop.name | escape }} Homepage"
           title="{{ shop.name | escape }} Homepage"
         >
-          <span class="site-header__logo-badge" aria-hidden="true"></span>
           {% if section.settings.logo != blank %}
             <img
               src="{{ section.settings.logo | image_url: width: 300 }}"
