@@ -301,7 +301,7 @@ p {
 }
 
 .site-header__logo-img {
-  max-height: 48px;
+  max-height: 100px;
   width: auto;
   display: block;
 }
