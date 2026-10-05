@@ -473,7 +473,7 @@
   {% for filter in collection.filters %}
     console.log("Filter:", {{ filter.values | json }});
   {% endfor %}
-   {% for filter in collection.filters %}
-    console.log("Filter:", {{ filter.values | json }});
+   {% for value in filter.values %}
+    console.log("Filter:", {{ filter.value | json }});
   {% endfor %}
 </script>
