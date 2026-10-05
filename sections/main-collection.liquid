@@ -471,9 +471,17 @@
 
 <script>
   {% for filter in collection.filters %}
-    console.log("Filter:", {{ filter.values | json }});
-  {% endfor %}
-   {% for value in filter.values %}
-    console.log("Filter:", {{ filter.value | json }});
+    console.log("Filter:", {{ filter.label | json }});
+
+    {% for value in filter.values %}
+      console.log(
+        "Value:",
+        {{ value.label | json }},
+        "Count:",
+        {{ value.count }},
+        "Active:",
+        {{ value.active }}
+      );
+    {% endfor %}
   {% endfor %}
 </script>
