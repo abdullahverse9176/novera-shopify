@@ -470,6 +470,7 @@
 </script>
 
 <script>
-  const filters = {{ collection.filters | json }};
-  console.log(filters);
+  {% for filter in collection.filters %}
+    console.log("Filter:", {{ filter.label | json }});
+  {% endfor %}
 </script>
