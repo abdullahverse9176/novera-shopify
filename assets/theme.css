@@ -723,7 +723,9 @@ p {
   font-weight: 400;
   color: var(--text-muted-dark);
 }
-
+.header_search {
+  
+}
 /* 1599px Max-Width */
 @media screen and (max-width: 1599px) {
   .hero-section__glow {
