@@ -726,6 +726,163 @@ p {
 #header_search {
 
 }
+
+.search-modal-wrapper {
+  position: relative;
+}
+
+/* Open button */
+
+.open-search-modal {
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* Modal */
+
+.search-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.search-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.search-modal__content {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+  max-height: 85vh;
+  margin: 60px auto 0;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Close */
+
+.search-modal__close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  width: 35px;
+  height: 35px;
+  border: 0;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Header */
+
+.search-modal__header {
+  padding: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.search-modal__header h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+}
+
+.search-modal__form {
+  display: flex;
+  gap: 10px;
+}
+
+.search-modal__input {
+  flex: 1;
+  padding: 13px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-modal__input:focus {
+  border-color: #111;
+}
+
+.search-modal__button {
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Results */
+
+.search-modal__results {
+  max-height: 55vh;
+  overflow-y: auto;
+}
+
+.search-modal__results-inner {
+  padding: 15px 30px 30px;
+}
+
+/* Product */
+
+.search-product {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  color: #111;
+}
+
+.search-product:hover {
+  background: #f8f8f8;
+}
+
+.search-product__image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.search-product__info {
+  flex: 1;
+}
+
+.search-product__title {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.search-product__price {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.search-product__compare-price {
+  margin-left: 6px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.search-no-results {
+  padding: 30px 0;
+  text-align: center;
+  color: #666;
+}
 /* 1599px Max-Width */
 @media screen and (max-width: 1599px) {
   .hero-section__glow {
