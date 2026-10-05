@@ -59,63 +59,15 @@
 
       <!-- Action Items & Mobile Menu Trigger -->
       <div class="site-header__actions">
-        <div class="search-modal-wrapper">
-
-  <button type="button" class="open-search-modal">
-    Search
-  </button>
-
-  <div class="search-modal" hidden>
-
-    <div class="search-modal__overlay"></div>
-
-    <div class="search-modal__content">
-
-      <button
-        type="button"
-        class="search-modal__close"
-        aria-label="Close search"
-      >
-        &times;
-      </button>
-
-      <div class="search-modal__header">
-
-        <h2>Search Products</h2>
-
-        <form
-          class="search-modal__form"
-          action="{{ routes.search_url }}"
-          method="get"
+        <a
+          href="{% if routes.search_url %}{{ routes.search_url }}{% else %}javascript:void(0){% endif %}"
+          class="site-header__action-btn"
+          id="header_search"
+          aria-label="Search the store"
+          title="Search the store"
         >
-          <input
-            type="search"
-            name="q"
-            class="search-modal__input"
-            placeholder="Search products..."
-            autocomplete="off"
-          >
-
-          <button type="submit" class="search-modal__button">
-            Search
-          </button>
-        </form>
-
-      </div>
-
-      <div class="search-modal__results">
-
-        <div class="search-modal__results-inner">
-          <!-- AJAX results yahan ayenge -->
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
+          {% render 'icons', icon: 'search' %}
+        </a>
 
         <a
           href="{% if routes.cart_url %}{{ routes.cart_url }}{% else %}javascript:void(0){% endif %}"
