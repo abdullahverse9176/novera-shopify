@@ -1,0 +1,46 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "show_announcement": true,
+          "announcement_text": "Free worldwide express shipping on all orders over $75!",
+          "announcement_link": "",
+          "announcement_link_text": "Learn More",
+          "logo": "shopify://shop_images/logo.png",
+          "logo_width": 140,
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "brand_heading": "About Novera",
+          "brand_text": "Engineered for modern lifestyle and cutting-edge performance. Elevate your everyday standards with our precision-crafted essentials.",
+          "show_socials": true,
+          "social_facebook": "",
+          "social_instagram": "",
+          "social_twitter": "",
+          "social_linkedin": "",
+          "menu_1_title": "Quick Links",
+          "menu_1": "",
+          "menu_2_title": "Customer Care",
+          "menu_2": "",
+          "newsletter_heading": "Join The VIP Circle",
+          "newsletter_subtext": "Subscribe to receive exclusive drops, private member discounts, and architectural design insights."
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}
