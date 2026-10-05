@@ -471,6 +471,6 @@
 
 <script>
   {% for filter in collection.filters %}
-    console.log("Filter:", {{ filter.label | json }});
+    console.log("Filter:", {{ filter.values | json }});
   {% endfor %}
 </script>
